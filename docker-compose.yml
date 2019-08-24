@@ -1,0 +1,10 @@
+---
+
+version: '3'
+
+services:
+  exercises:
+    build: .
+    volumes:
+      - .:/exercises-elixir
+    command: make lint test
