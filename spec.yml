@@ -3,5 +3,5 @@
 language:
   docker_image: "hexletbasics/exercises-elixir"
   extension: elixir
-  exercise_filename: main.ex
-  exercise_test_filename: test.ex
+  exercise_filename: lib/solution.ex
+  exercise_test_filename: test/solution_test.ex

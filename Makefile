@@ -24,7 +24,7 @@ compose-build:
 
 SUBDIRS := $(wildcard modules/**/*/.)
 
-lint: lint-yaml lint-code
+lint: lint-yaml # lint-code
 
 lint-yaml:
 	yamllint modules

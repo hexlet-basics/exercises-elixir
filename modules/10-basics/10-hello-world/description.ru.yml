@@ -1,0 +1,22 @@
+---
+
+name: Привет, Мир!
+theory: |
+
+  Elixir мощь
+
+instructions: |
+  Наберите в редакторе код из задания символ в символ и нажмите «Проверить».
+
+  ```elixir
+  # я комментарий
+  defmodule Solution do
+    def hello do
+      IO.puts "Hello, World!"
+    end
+  end
+  ```
+
+tips:
+  - |
+    [repl.it](https://repl.it/languages/elixir) - здесь вы можете экспериментировать с кодом на Elixir.
