@@ -5,6 +5,7 @@ version: '3'
 services:
   exercises:
     build: .
+    image: hexletbasics/exercises-elixir
     volumes:
       - .:/exercises-elixir
     command: make lint test

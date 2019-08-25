@@ -25,6 +25,9 @@ compose-bash:
 compose-build:
 	docker-compose build
 
+compose-push:
+	docker-compose push
+
 SUBDIRS := $(wildcard modules/**/*/.)
 
 lint: lint-yaml lint-code
