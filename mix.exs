@@ -1,9 +1,9 @@
-defmodule Jopa.MixProject do
+defmodule ExercisesElixir.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :jopa,
+      app: :exercises_elixir,
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
