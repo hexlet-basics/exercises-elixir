@@ -1,25 +1,12 @@
 ---
 
-name: Организация кода
+name: Условные конструкции
 theory: |
 
-  В эликсире, функции группируются по модулям, которые выполняют роль неймспейсов. Например в предыдущем уроке мы использовали функцию `puts(text)` из модуля _IO_:
-
-  ```elixir
-  IO.puts("Hello, World!")
-  ```
+  В процессе
 
 instructions: |
-  Наберите в редакторе код из задания символ в символ и нажмите «Проверить».
 
-  ```elixir
-  defmodule Solution do
-    def hello do
-      IO.puts "Hello, World!"
-    end
-  end
-  ```
+  В процессе
 
-tips:
-  - |
-    [repl.it](https://repl.it/languages/elixir) - здесь вы можете экспериментировать с кодом на Elixir.
+tips: []

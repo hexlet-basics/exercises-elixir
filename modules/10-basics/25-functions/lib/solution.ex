@@ -1,5 +1,8 @@
 defmodule Solution do
-  def hello do
-    IO.puts("Hello, World!")
+  # BEGIN
+  def print_twice(n) do
+    IO.puts(n)
+    IO.puts(n)
   end
+  # END
 end
