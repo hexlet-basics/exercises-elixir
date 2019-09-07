@@ -14,7 +14,7 @@ theory: |
 
   ```
   # Имя записывается в CamelCase
-  defmodule HexletBasics
+  defmodule HexletBasics do
     # Здесь описывается содержимое модуля
   end
   ```
@@ -24,7 +24,7 @@ theory: |
   Модули могут быть вложенными. Как правило их создают такими, когда они лежат внутри директорий относительно базовой директории проекта. Например в коде этого сайта есть модуль `HexletBasics.Application`, который расположен в директории _lib/hexlet_basics/application.ex_.
 
   ```elixir
-  defmodule HexletBasics.Application
+  defmodule HexletBasics.Application do
     # Функция
     def hello do
       IO.puts("Hello, World!")
