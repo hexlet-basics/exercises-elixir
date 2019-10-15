@@ -10,7 +10,7 @@ theory: |
   IO.puts("Hello, World!")
   ```
 
-  Модули определяются с помощью конструкции _defmodule/end_:
+  Модули определяются с помощью конструкции _defmodule/do/end_:
 
   ```
   # Имя записывается в CamelCase
