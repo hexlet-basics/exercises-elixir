@@ -1,4 +1,6 @@
-compose: compose-build
+compose-setup: compose-build compose-install
+
+compose:
 	docker-compose up
 
 compose-test:
@@ -17,7 +19,7 @@ compose-lint:
 	docker-compose run exercises make lint
 
 compose-install:
-	docker-compose run exercises composer install
+	docker-compose run exercises mix deps.get
 
 compose-bash:
 	docker-compose run exercises bash
