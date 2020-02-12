@@ -8,4 +8,4 @@ services:
     image: hexletbasics/exercises-elixir
     volumes:
       - .:/exercises-elixir
-    command: make lint test
+    command: make check
