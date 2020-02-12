@@ -1,3 +1,5 @@
+[![Github Actions Status](https://github.com/hexlet-basics/exercises-elixir/workflows/Docker/badge.svg)](https://github.com/hexlet-basics/exercises-elixir/actions)
+
 # exercise-elixir
 
 ## Develop
