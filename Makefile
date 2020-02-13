@@ -3,20 +3,17 @@ compose-setup: compose-build compose-install
 compose:
 	docker-compose up
 
-compose-test:
+compose-sut:
 	docker-compose -f docker-compose.test.yml run sut
 
-compose-lint-code:
-	docker-compose run exercises make lint-code
+compose-code-lint:
+	docker-compose run exercises make code-lint
 
-compose-format:
-	docker-compose run exercises mix format
+compose-description-lint:
+	docker-compose run exercises make description-lint
 
-compose-lint-yaml:
-	docker-compose run exercises make lint-yaml
-
-compose-lint:
-	docker-compose run exercises make lint
+compose-schema-validate:
+	docker-compose run exercises make schema-validate
 
 compose-install:
 	docker-compose run exercises mix deps.get
@@ -27,23 +24,28 @@ compose-bash:
 compose-build:
 	docker-compose build
 
-compose-push:
-	docker-compose push
+description-lint:
+	yamllint modules
+
+code-lint:
+	mix credo
+
+compose-format:
+	docker-compose run exercises mix format
+
+compose-test:
+	docker-compose run exercises make test
+
+test:
+	@(for i in $$(find modules/** -type f -name Makefile); do make test -C $$(dirname $$i) || exit 1; done)
+
+check: description-lint code-lint schema-validate test
 
 SUBDIRS := $(wildcard modules/**/*/.)
 
-lint: lint-yaml lint-code
-
-lint-yaml:
-	yamllint modules
-
-lint-code:
-	mix credo
-
-test: $(SUBDIRS)
+schema-validate: $(SUBDIRS)
 $(SUBDIRS):
-	@echo
-	make -C $@ test
-	@echo
+	yq . $@/description.ru.yml > /tmp/current-description.json && ajv -s /exercises-elixir/schema.json -d /tmp/current-description.json
+	yq . $@/description.en.yml > /tmp/current-description.json && ajv -s /exercises-elixir/schema.json -d /tmp/current-description.json || true
 
-.PHONY: all $(SUBDIRS)
+.PHONY: all test $(SUBDIRS)
