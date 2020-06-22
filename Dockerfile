@@ -1,4 +1,4 @@
-FROM melodyn/base-image:latest
+FROM hexletbasics/base-image:latest
 
 WORKDIR /exercises-elixir
 
@@ -15,5 +15,5 @@ RUN mix local.hex --force \
   && mix hex.info
 RUN mix deps.get
 
-COPY --from=melodyn/base-image:latest /tmp/basics/common/* ./
+COPY --from=hexletbasics/base-image:latest /tmp/basics/common/* ./
 COPY . .
