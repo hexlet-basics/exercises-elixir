@@ -15,5 +15,4 @@ RUN mix local.hex --force \
   && mix hex.info
 RUN mix deps.get
 
-COPY --from=hexletbasics/base-image:latest /tmp/basics/common/* ./
 COPY . .
