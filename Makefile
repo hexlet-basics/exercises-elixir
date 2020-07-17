@@ -16,3 +16,9 @@ code-lint:
 
 compose-format:
 	docker-compose run exercises mix format
+
+compose-bash:
+	docker-compose run exercises bash
+
+compose-test:
+	docker-compose run exercises make test
