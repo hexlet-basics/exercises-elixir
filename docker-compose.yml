@@ -4,8 +4,5 @@ version: '3'
 
 services:
   exercises:
-    build: .
-    image: hexletbasics/exercises-elixir
-    volumes:
-      - .:/exercises-elixir
+    image: hexletbasics/exercises-ruby:cached
     command: make check
