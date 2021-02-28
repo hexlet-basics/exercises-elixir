@@ -1,0 +1,31 @@
+---
+name: Hello, World!
+theory: |
+
+  Elixir is a dynamic, functional programming language designed for building scalable and easily maintainable applications.
+
+  Elixir was created by José Valim and appeared for the first time in 2011. It steadily gained popularity since then. Today some big companies use Elixir in production, including Brex, Heroku, Discord, Pinterest, and others.
+
+  It runs on top of the Erlang virtual machine BEAM and inherits all the goodies of Erlang OTP. It's famous for its unique features for creating reliable distributed systems and extensively used in real-time embedded systems and apps: messengers, online games, etc.
+
+  Elixir is a very pragmatic language that is easy to learn. Have fun!
+
+instructions: |
+  Type this code in the editor and hit "Run"
+
+  ```elixir
+  # Define a module Solution
+  defmodule Solution do
+    # define a function hello
+    def hello do
+      # Call an other module's function
+      IO.puts("Hello, World!") # No colon
+    end
+  end
+  ```
+
+tips:
+  - |
+    [repl.it](https://repl.it/languages/elixir) - write your Elixir experiments in your browser.
+    [Phoenix](https://phoenixframework.org/) - the most popular web framework in Elixir.
+    [Elixir: The Documentary](https://youtu.be/lxYFOM3UJzo) - the video that tells the origins of Elixir

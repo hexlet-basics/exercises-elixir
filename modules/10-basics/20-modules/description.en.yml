@@ -1,0 +1,52 @@
+---
+name: Modules
+theory: |
+
+  In Elixir, functions are grouped by modules that play the role of namespaces. For example, in the previous exercise we used the function `puts(text)` from module _IO_:
+
+  ```elixir
+  IO.puts("Hello, World!")
+  ```
+
+  Modules are defined with a special contstruct _defmodule/do/end_:
+
+  ```
+  # use CamelCase for name
+  defmodule HexletBasics do
+    # Here goes module contains
+  end
+  ```
+
+  Elixir allows the creation of multiple modules in the same file, but there is a convention to have only one module per file with the same name as the module but in _snake_case_.
+
+  Modules can be nested. By convention, we create nested modules when they are located in a directory. For example, there's the module `HexletBasics.Application` located in _lib/hexlet_basics/application.ex_ directory.
+
+  ```elixir
+  defmodule HexletBasics.Application do
+    # Function
+    def hello do
+      IO.puts("Hello, World!")
+    end
+  end
+  ```
+
+  Function calls for nested modules are the same as for flat modules. First, we put the module's full name, then a function call.
+
+  ```elixir
+  HexletBasics.Application.hello()
+  ```
+
+  There is a special module _Kernel_ which functions we can call directly.
+
+  ```elixir
+  is_number(13) # true
+  ```
+
+  _Kernel_ contains basic language primitives for arithmetic operations, spawning processes, data type handling, macros for defining new functionality, and more.
+
+instructions: |
+  Create module _My.Super.Module_ and put the function `hello()` we defined above
+
+tips:
+  - |
+    [Kernel](https://hexdocs.pm/elixir/Kernel.html)
