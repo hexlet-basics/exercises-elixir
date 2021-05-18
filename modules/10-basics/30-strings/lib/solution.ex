@@ -1,5 +1,7 @@
 defmodule Solution do
-  def hello do
-    IO.puts("Hello, World!")
+
+  def concate_and_upcase(str1, str2) do
+    String.trim(String.upcase(str1 <> str2, :ascii))
   end
+
 end
