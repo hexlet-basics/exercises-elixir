@@ -1,5 +1,9 @@
 defmodule Solution do
-  def hello do
-    IO.puts("Hello, World!")
+
+  def do_math(a, b) do
+    IO.puts((a + b) / b)
+    IO.puts(div(a, b))
+    IO.puts(rem(b, a))
   end
+
 end
