@@ -1,8 +1,6 @@
 defmodule Solution do
 
-  def distance(point1, point2) do
-    {:point, x1, y1} = point1
-    {:point, x2, y2} = point2
+  def distance({:point, x1, y1}, {:point, x2, y2}) do
     x_dist = abs(x1 - x2)
     y_dist = abs(y1 - y2)
     :math.sqrt(:math.pow(x_dist, 2) + :math.pow(y_dist, 2))
