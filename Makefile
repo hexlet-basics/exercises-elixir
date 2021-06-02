@@ -6,7 +6,7 @@ compose:
 	docker-compose up
 
 compose-install:
-	docker-compose run exercises bundle install
+	docker-compose run exercises mix deps.get
 
 compose-bash:
 	docker-compose run exercises bash
@@ -21,4 +21,4 @@ compose-lint:
 	docker-compose run exercises make code-lint
 
 code-lint:
-	bundle exec rubocop modules
+	mix credo
