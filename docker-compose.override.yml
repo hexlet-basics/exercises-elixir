@@ -6,4 +6,4 @@ services:
   exercises:
     build: .
     volumes:
-      - .:/exercises-ruby
+      - .:/exercises-elixir
