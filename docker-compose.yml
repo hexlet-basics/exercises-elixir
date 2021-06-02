@@ -4,5 +4,6 @@ version: '3'
 
 services:
   exercises:
+    build: .
     image: hexletbasics/exercises-elixir:cached
     command: make check
