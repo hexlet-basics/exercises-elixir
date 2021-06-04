@@ -96,7 +96,7 @@ instructions: |
 
   Окружность представлена кортежем `{:circle, center, radius}`, где center — это кортеж `:point`.
 
-  Прямоугольник представлен кортежем `{:rect, left_top, right_bottom}`, где left_top и right_bottom — это кортежи `:point`.
+  Прямоугольник представлен кортежем `{:rect, left_top, right_bottom}`, где `left_top` и `right_bottom` — это кортежи `:point`.
 
   Уже реализованная функция distance может вам пригодиться:
 
