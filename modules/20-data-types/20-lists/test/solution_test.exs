@@ -1,9 +1,10 @@
 defmodule Test do
   use ExUnit.Case
-  import ExUnit.CaptureIO
+  import Solution
 
-  test "greets the world" do
-    msg = capture_io(fn -> Solution.hello() end) |> String.trim()
-    assert msg == "Hello, World!"
+  test "get second item" do
+    assert 42 == get_second_item([20, 22, 24])
+    assert 3 == get_second_item([1, 2, 3, 4])
+    assert -3 == get_second_item([-1, -2, -3, -4])
   end
 end
