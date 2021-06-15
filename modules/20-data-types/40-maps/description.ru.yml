@@ -3,8 +3,66 @@
 name: Словари
 theory: |
 
-  В разработке
+  Словарь (Map) хранит пары ключ-значение. Это еще одна динамическая структура данных в которую можно добавлять и удалять элементы.
 
+  TODO пример с ключами-строками: создание, чтение по ключу
+
+  ```elixir
+  my_map = %{"a" => 1, "b" => 2}
+  my_map["a"] # 1
+  my_map["b"] # 2
+  ```
+  
+  TODO пример с ключами атомами: создание (с сахаром и без), чтение по ключу и через точку
+  
+  ```elixir
+  other_map = %{:a => 1, :b => 2}
+  other_map[:a] # 1
+  other_map[:b] # 2
+  ```
+
+  ```elixir
+  other_map = %{a: 1, b: 2}      
+  other_map.a # 1
+  other_map.b # 2
+  ```
+  
+  TODO чтение через Map.get
+
+  ```elixir
+  Map.get(other_map, :a) # 1
+  Map.get(other_map, :c) # nil
+  Map.get(other_map, :c, 42) # 42
+  ```
+
+  TODO добавление/замена через Map.put
+
+  ```elixir
+  Map.put(other_map, :c, 42) # %{a: 1, b: 2, c: 42}
+  Map.put(other_map, :a, 42) # %{a: 42, b: 2}
+  ```
+
+  Map is immutable, and so the result of the update is a new map.
+
+  TODO замена ключа
+
+  ```elixir
+  %{other_map | :a => 42} # %{a: 42, b: 2}
+  %{other_map | :b => 42} # %{a: 1, b: 42}
+  %{other_map | :c => 42} # ** (KeyError) key :c not found in: %{a: 1, b: 2}
+  ```
+
+  TODO удаление ключа
+
+  ```elixir
+  Map.delete(other_map, :a) # %{b: 2}
+  ```
+
+  TODO Map.take
+  TODO Map.drop
+  TODO Map.split
+  
+  
 instructions: |
 
   В разработке
