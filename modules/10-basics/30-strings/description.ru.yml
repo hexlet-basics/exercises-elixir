@@ -38,7 +38,7 @@ instructions: |
     end
   end
 
-  IO.puts(Soluction.concate_and_upcase("привет ", "world!"))
+  IO.puts(Solution.concate_and_upcase("привет ", "world!"))
   ```
 
 tips:
