@@ -2,6 +2,7 @@ FROM hexletbasics/base-image:latest
 
 WORKDIR /exercises-elixir
 
+RUN apt-get update
 RUN apt-get install -y wget
 RUN wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
   dpkg -i erlang-solutions_2.0_all.deb && \
