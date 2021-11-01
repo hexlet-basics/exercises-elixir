@@ -114,6 +114,22 @@ theory: |
 
 instructions: |
 
-  В разработке
+  Реализовать функцию get_age(user), которая принимает объект `user`, представленный в виде кортежа `{:user, name, age}`, и возвращает возраст (age).
 
+  Реализовать функцию get_names, которая принимает список из трёх user, преставленных такими же кортежами, и возвращает список из трёх имен. 
+
+  ```elixir
+  defmodule Solution do
+
+    def get_age(user) do
+      # TODO реализация
+    end
+
+    def get_names(users) do
+      # TODO реализация
+    end
+
+  end
+  ```
+  
 tips: []
