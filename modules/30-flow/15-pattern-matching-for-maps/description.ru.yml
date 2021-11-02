@@ -60,6 +60,25 @@ theory: |
 
 instructions: |
 
-  В разработке
+  Реализовать функцию get_values(data), которая принимает словарь, извлекает из него два значения по ключам `:a` и `:b`, и возвращает их в виде кортежа `{a_value, b_value}`.
+
+  Реализовать функцию get_value_by_key(data, key), которая принимает словарь и ключ, извлекает значение по указанному ключу и возвращает его.
+
+  Обе функции генерируют исключение `MatchError` если в словаре нет нужных ключей.
+
+  ```elixir
+  defmodule Solution do
+
+    def get_values(data) do
+      # TODO реализация
+    end
+
+    def get_value_by_key(data, key) do
+      # TODO реализация
+    end
+
+  end
+  ```
+  
 
 tips: []
