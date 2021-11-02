@@ -18,9 +18,8 @@ $ make compose
 $ make compose-test
 
 # run linters and validators
-$ make compose-code-lint
-$ make compose-description-lint
-$ make compose-schema-validate
+$ make compose-lint
+$ make code-lint
 ```
 
 ##
