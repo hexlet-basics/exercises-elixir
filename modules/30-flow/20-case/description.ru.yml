@@ -78,7 +78,7 @@ theory: |
   Вложенный даже на два уровня код плохо читается. Обычно этого можно избежать. Данный пример можно реализовать без вложенного case таким образом:
     
   ```elixir
-  def handle2(animal, action) do
+  def handle(animal, action) do
     case {animal, action} do
       {{:dog, name}, :add} -> IO.puts("add dog #{name}")
       {{:dog, name}, :remove} -> IO.puts("remove dog #{name}")
@@ -126,7 +126,23 @@ theory: |
   ```
 
 instructions: |
+  
+  Реализовать функцию `join_game(user)`, которая принимает игрока в виде кортежа `{:user, name, age, role}` и определяет, разрешено ли данному игроку подключиться к игре. Если игроку уже исполнилось 18 лет, то он может войти в игру. Если роль игрока `:admin` или `:moderator`, то он может войти в игру независимо от возраста. Функция должна вернуть `:ok` или `:error`.
 
-  В разработке
+  Реализовать функцию `move_allowed?(current_color, figure)` которая определяет, разрешено ли данной шахматной фигуре сделать ход. Параметр `current_color` может быть либо `:white` либо `:black`, и он указывает, фигурам какого цвета разрешено сделать ход. Параметр `figure` представлен кортежем `{type, color}`, где `type` может быть один из: `:pawn`, `:rock`, `:bishop`, `:knight`, `:queen`, `:king`, а color может быть `:white` или `:black`. Фигура может сделать ход если её тип `:pawn` или `:rock` и её цвет совпадает с `current_color`. Функция должна вернуть `true` или `false`.
+    
+  ```elixir
+  defmodule Solution do
+
+    def join_game(user) do
+      # TODO реализация
+    end
+
+    def move_allowed?(current_color, figure) do
+      # TODO реализация
+    end
+
+  end
+  ```
 
 tips: []
