@@ -3,10 +3,10 @@ name: Docker
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 env:
   IMAGE_NAME: hexletbasics/exercises-elixir
