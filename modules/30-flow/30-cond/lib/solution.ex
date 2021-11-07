@@ -7,7 +7,7 @@ defmodule Solution do
       true -> false
     end
   end
-  
+
   def double_win?(a_win, b_win, c_win) do
     cond do
       (a_win and b_win) and (not c_win) -> :ab
@@ -16,5 +16,5 @@ defmodule Solution do
       true -> false
     end
   end
-  
+
 end

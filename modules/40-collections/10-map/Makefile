@@ -1,4 +1,4 @@
 test:
-	mix test
+	@ test.sh
 
 .PHONY: test

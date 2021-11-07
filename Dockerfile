@@ -18,3 +18,5 @@ RUN mix local.hex --force \
 RUN mix deps.get
 
 COPY . .
+
+ENV PATH /exercises-elixir/bin:$PATH
