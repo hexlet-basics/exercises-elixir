@@ -1,5 +1,4 @@
 defmodule Solution do
-
   def get_age(user) do
     {:user, _name, age} = user
     age
@@ -11,7 +10,7 @@ defmodule Solution do
       {:user, name2, _},
       {:user, name3, _}
     ] = users
+
     [name1, name2, name3]
   end
-  
 end

@@ -6,7 +6,7 @@ defmodule Test do
   @bill {:user, "Bill", 12}
   @helen {:user, "Helen", 20}
   @kate {:user, "Kate", 22}
-  
+
   test "get_age test" do
     assert 42 == get_age(@bob)
     assert 12 == get_age(@bill)
@@ -19,5 +19,4 @@ defmodule Test do
     assert ["Helen", "Bill", "Kate"] == get_names([@helen, @bill, @kate])
     assert ["Kate", "Bill", "Bob"] == get_names([@kate, @bill, @bob])
   end
-
 end

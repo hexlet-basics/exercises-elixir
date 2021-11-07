@@ -1,5 +1,4 @@
 defmodule Solution do
-
   def distance({:point, x1, y1}, {:point, x2, y2}) do
     x_dist = abs(x1 - x2)
     y_dist = abs(y1 - y2)
@@ -18,5 +17,4 @@ defmodule Solution do
     {:point, right_x, bottom_y} = right_bottom
     x >= left_x and x <= right_x and y <= top_y and y >= bottom_y
   end
-
 end

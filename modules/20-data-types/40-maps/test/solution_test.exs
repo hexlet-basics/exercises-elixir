@@ -31,11 +31,10 @@ defmodule Test do
     assert copy_key(map1, map2, :b, 42) == %{c: 3, d: 4, b: 2}
     assert copy_key(map1, map2, :e, 42) == %{c: 3, d: 4, e: 42}
     assert copy_key(map1, map2, :c, 42) == %{c: 42, d: 4}
-    
+
     assert copy_key(map2, map1, :c, 42) == %{a: 1, b: 2, c: 3}
     assert copy_key(map2, map1, :d, 42) == %{a: 1, b: 2, d: 4}
     assert copy_key(map2, map1, :e, 42) == %{a: 1, b: 2, e: 42}
     assert copy_key(map2, map1, :b, 42) == %{a: 1, b: 42}
   end
-  
 end

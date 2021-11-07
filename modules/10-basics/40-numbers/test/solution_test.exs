@@ -15,6 +15,7 @@ defmodule Test do
       capture_io(fn -> Solution.do_math(a, b) end)
       |> String.trim()
       |> String.split()
+
     {String.to_float(a), String.to_integer(b), String.to_integer(c)}
   end
 end

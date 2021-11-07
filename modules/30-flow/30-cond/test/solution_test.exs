@@ -19,5 +19,4 @@ defmodule Test do
     assert not double_win?(false, true, false)
     assert not double_win?(false, false, true)
   end
-
 end

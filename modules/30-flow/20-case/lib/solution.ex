@@ -1,5 +1,4 @@
 defmodule Solution do
-
   def join_game(user) do
     case user do
       {:user, _name, _age, :admin} -> :ok
@@ -16,5 +15,4 @@ defmodule Solution do
       _ -> false
     end
   end
-
 end
