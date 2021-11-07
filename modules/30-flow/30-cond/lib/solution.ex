@@ -1,5 +1,5 @@
 defmodule Solution do
-
+  # BEGIN
   def single_win?(a_win, b_win) do
     cond do
       a_win and (not b_win) -> true
@@ -16,5 +16,5 @@ defmodule Solution do
       true -> false
     end
   end
-
+  # END
 end
