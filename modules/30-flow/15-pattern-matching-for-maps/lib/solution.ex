@@ -1,4 +1,5 @@
 defmodule Solution do
+  # BEGIN
   def get_values(data) do
     %{a: a_value, b: b_value} = data
     {a_value, b_value}
@@ -8,4 +9,5 @@ defmodule Solution do
     %{^key => value} = data
     value
   end
+  # END
 end
