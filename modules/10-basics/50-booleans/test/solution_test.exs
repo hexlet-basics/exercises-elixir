@@ -1,6 +1,5 @@
 defmodule Test do
   use ExUnit.Case
-  import ExUnit.CaptureIO
 
   test "any?" do
     assert false == Solution.any?(false, false, false, false)
