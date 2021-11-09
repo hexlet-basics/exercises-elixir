@@ -1,9 +1,9 @@
 defmodule Test do
   use ExUnit.Case
-  import ExUnit.CaptureIO
+  import Solution
 
   test "greets the world" do
-    msg = capture_io(fn -> Solution.hello() end) |> String.trim()
-    assert msg == "Hello, World!"
+    assert "my cool stringmy cool string" == process(" My Cool String  ", 2)
+    assert "boom-boom-boom-" == process("  BOOM-  ", 3)
   end
 end
