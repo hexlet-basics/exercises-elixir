@@ -50,6 +50,6 @@ instructions: |
   Solution.process(" My Cool String  ", 2) # "my cool stringmy cool string"
   ```
 
-tips: []
+tips:
   - |
     [String](https://hexdocs.pm/elixir/String.html)
