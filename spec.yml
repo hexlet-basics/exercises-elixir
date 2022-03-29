@@ -5,3 +5,6 @@ language:
   extension: elixir
   exercise_filename: lib/solution.ex
   exercise_test_filename: test/solution_test.exs
+  learn_as: second_language
+  progress: completed
+  name: Elixir
