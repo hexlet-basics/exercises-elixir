@@ -10,16 +10,20 @@
 
 ```sh
 # setup
-$ make
+make
 # run
-$ make compose
+make compose
 
 # run tests
-$ make compose-test
+make compose-test
 
 # run linters and validators
-$ make compose-lint
-$ make code-lint
+make compose-lint
+make compose-description-lint
+make compose-schema-validate
+
+
+make ci-check # run CI checks witn docker-compose
 ```
 
 ---
