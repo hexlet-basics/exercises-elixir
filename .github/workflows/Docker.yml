@@ -8,55 +8,12 @@ on:
     branches:
       - main
 
-env:
-  IMAGE_NAME: hexletbasics/exercises-elixir
-  IS_PUSH: ${{ github.event_name == 'push' }}
-  COLOR_MAP: '{ success: "#800000", failure: "#008000" }'
-
 jobs:
   main:
     runs-on: ubuntu-latest
+
     steps:
-
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v1
-        if: ${{ env.IS_PUSH == 'true' }}
+      - uses: hexlet-basics/exercises-action@release
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build
-        uses: docker/build-push-action@v2
-        if: ${{ env.IS_PUSH == 'true' }}
-        with:
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:cached
-          cache-to: type=inline
-          # push: true
-          tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:cached
-
-      - uses: actions/checkout@v2
-
-      - name: Check
-        run: |
-          docker-compose --file docker-compose.yml up --abort-on-container-exit
-
-      - name: Push
-        uses: docker/build-push-action@v2
-        if: ${{ env.IS_PUSH == 'true' }}
-        with:
-          push: true
-          tags: ${{ env.IMAGE_NAME }}:latest
-
-      - name: Send notification into Slack
-        if: ${{ always() && env.IS_PUSH == 'true' }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_COLOR: ${{ fromJson(env.COLOR_MAP)[job.status] }}
-          SLACK_TITLE: ${{ job.status }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
