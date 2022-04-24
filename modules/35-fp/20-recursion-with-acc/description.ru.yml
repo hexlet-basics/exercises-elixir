@@ -71,7 +71,6 @@ theory: |
   Реализация:
 
   ```elixir
-
   def get_id_name(users), do: get_id_name(users, [])
 
   defp get_id_name([], acc), do: Enum.reverse(acc)
