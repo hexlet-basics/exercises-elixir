@@ -67,7 +67,7 @@ instructions: |
 
   ```elixir
   > Solution.encode('Hello', 10)
-  "Rovvy"
+  'Rovvy'
   > Solution.encode('Hello', 5)
   'Mjqqt'
   ```
@@ -77,7 +77,7 @@ instructions: |
 
   ```elixir
   > Solution.decode('Rovvy', 10)
-  "Hello"
+  'Hello'
   > Solution.decode('Mjqqt', 5)
   'Hello'
   ```
