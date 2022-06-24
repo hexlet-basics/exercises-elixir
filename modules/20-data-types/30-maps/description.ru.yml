@@ -110,5 +110,6 @@ instructions: |
   ```
 
   
-tips: []
-
+tips:
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/1.12/Map.html)
