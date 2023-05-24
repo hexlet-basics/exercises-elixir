@@ -1,54 +1,111 @@
 ---
-
-name: Аттрибуты
+name: Атрибуты
 theory: |
 
-  В эликсире функции группируются по модулям, которые выполняют роль неймспейсов. Например, в предыдущем уроке мы использовали функцию `puts(text)` из модуля _IO_:
+  Иногда, в модуле нужно вынести какие-либо значения в константы, для этого используются атрибуты, начинающиеся со знака `@`.
 
   ```elixir
-  # Обращение по имени не зависит от того, в каком месте программы происходит вызов
-  IO.puts("Hello, World!")
-  ```
+  defmodule MyModule do
+    @magic_number 8
 
-  Модули определяются с помощью конструкции _defmodule/do/end_:
-
-  ```
-  # Имя записывается в CamelCase
-  defmodule HexletBasics do
-    # Здесь описывается содержимое модуля
+    def do_magic(num) do
+      num * @magic_number
+    end
   end
+
+  MyModule.do_magic(10) # 80
   ```
 
-  Эликсир позволяет создавать несколько модулей в одном файле, но так делают не часто. Обычно, создают один модуль на один файл. Имя этого файла получается из имени модуля переводом его _CamelCase_ в _snake_case_.
-
-  Модули могут быть вложенными. Как правило, их помещают внутри директорий относительно базовой директории проекта. Например, в коде этого сайта есть модуль `HexletBasics.Application`, который расположен в директории _lib/hexlet_basics/application.ex_.
+  Атрибуты модуля недоступны снаружи модуля.
 
   ```elixir
-  defmodule HexletBasics.Application do
-    # Функция
-    def hello do
-      IO.puts("Hello, World!")
+  defmodule MyModule do
+    @magic_number 8
+  end
+
+  MyModule.@magic_number # возникнет ошибка
+  ```
+
+  Атрибуты можно объявлять несколько раз и перезаписывать, однако стоит понимать, что компилятор подставляет последнее значение объявленного аттрибута, например:
+
+  ```elixir
+  defmodule MyModule do
+    @magic_number 8
+
+    def cast_magic() do
+      @magic_number
+    end
+
+    @magic_number 0
+
+    def do_magic() do
+      @magic_number
+    end
+  end
+
+  MyModule.cast_magic() # 8
+
+  MyModule.do_magic() # 0
+
+  # по сути после компиляции модуль будет выглядеть так
+  defmodule MyModule do
+    @magic_number 8
+
+    def cast_magic() do
+      8
+    end
+
+    @magic_number 0
+
+    def do_magic() do
+      0
     end
   end
   ```
 
-  Обращение к функциям вложенных модулей ничем не отличается от обращения к плоским модулям. Сначала указывается полное имя модуля, за которым идет вызов функции:
+  Внутри модулей есть еще специальные атрибуты, которые используются эликсиром для генерации документации, например атрибут `@moduledoc`, в котором описывается общая информация о модуле или `@doc`, которым документируется объявленная функция:
 
   ```elixir
-  HexletBasics.Application.hello()
+  defmodule MyModule do
+    @moduledoc "My attributes exercise module."
+
+    @magic_number 8
+
+    @doc "Do some magic calculations."
+    def do_magic(num) do
+      num * @magic_number
+    end
+  end
   ```
 
-  Один модуль встроенный в Эликсир является особенным. Это модуль _Kernel_. Функции этого модуля можно вызывать напрямую, без указания самого модуля:
+  Затем, эти атрибуты используются в генерации документации.
 
-  ```elixir
-  is_number(13) # true
+  Еще можно заставить атрибут модуля при перезаписи накапливаться, с помощью специального объявления, например:
+
+   ```elixir
+  defmodule MyModule do
+    Module.register_attribute __MODULE__, :magic_values, accumulate: true
+
+    @magic_values 8
+    @magic_values :some
+    @magic_values "hello"
+
+    def do_magic() do
+      @magic_values
+    end
+  end
+
+  MyModule.do_magic # [8, :some, "hello"]
   ```
-
-  _Kernel_ содержит базовые языковые примитивы для арифметических операций, порождения процессов, определения новых функций и модулей, обработки типов данных и так далее.
 
 instructions: |
-  Определите модуль _My.Super.Module_ и поместите в него функцию `hello()` описанную выше
+  Определите внутри модуля следующие атрибуты со значениями:
+  - Атрибут: number_attr, значение: 10
+  - Атрибут: boolean_attr, значение: false
+  - Атрибут: hello_world_attr, значение: "Hello, World!"
 
 tips:
   - |
-    [Kernel](https://hexdocs.pm/elixir/Kernel.html)
+    [Пример с документацией библиотеки](https://github.com/michalmuskala/jason/blob/v1.4.0/lib/jason.ex)
+  - |
+    [Официальная документация](https://elixir-lang.org/getting-started/module-attributes.html)
