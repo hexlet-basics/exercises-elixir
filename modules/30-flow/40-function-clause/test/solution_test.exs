@@ -25,7 +25,7 @@ defmodule Test do
     assert not valid_game?({{:x, :o, :f}, {:f, :x, :o}, {:o, :o, :x}, {:x, :x, :x}})
     assert not valid_game?({{:x, :o, :f}, {:f, :x, :o}})
   end
-  
+
   test "check_who_win test" do
     assert {:win, :x} == check_who_win({{:x, :x, :x}, {:f, :f, :o}, {:f, :f, :o}})
     assert {:win, :o} == check_who_win({{:f, :x, :f}, {:o, :o, :o}, {:x, :f, :f}})
@@ -41,5 +41,4 @@ defmodule Test do
     assert :no_win == check_who_win({{:x, :f, :f}, {:f, :x, :x}, {:f, :f, :o}})
     assert :no_win == check_who_win({{:x, :o, :o}, {:o, :x, :x}, {:x, :o, :o}})
   end
-
 end

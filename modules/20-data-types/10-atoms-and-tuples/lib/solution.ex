@@ -18,5 +18,6 @@ defmodule Solution do
     {:point, right_x, bottom_y} = right_bottom
     x >= left_x and x <= right_x and y <= top_y and y >= bottom_y
   end
+
   # END
 end

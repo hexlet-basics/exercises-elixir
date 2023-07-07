@@ -5,5 +5,6 @@ defmodule Solution do
     IO.puts(div(a, b))
     IO.puts(rem(b, a))
   end
+
   # END
 end
