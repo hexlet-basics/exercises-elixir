@@ -20,6 +20,9 @@ compose-test:
 compose-lint:
 	docker-compose run exercises make code-lint
 
+code-format-fix:
+	mix format
+
 code-lint:
 	mix format --check-formatted && \
 	mix credo
