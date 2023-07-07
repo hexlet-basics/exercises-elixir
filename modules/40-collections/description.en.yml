@@ -1,4 +1,4 @@
 ---
 name: Collections
 description: |
-  In this module, we will study typical ways of working with lists and other collections: map, filter, and reduce. We will get acquainted with the Enum module, the workhorse for all collections. We will also study list constructors (lists comprehension).
+  In this module, we will study typical ways of working with lists and other collections: map, filter, and reduce. We will get acquainted with the Enum module, the workhorse for all collections. We will also study list constructors (lists comprehension) and streams.
