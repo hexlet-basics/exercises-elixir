@@ -39,4 +39,6 @@ instructions: |
   ; => [2, 3, 4, 5, 6, 7.0]
   ```
 
-tips: []
+tips:
+  - |
+    [Про map, filter, reduce](https://ru.hexlet.io/blog/posts/js-prosto-o-slozhnom-filter-map-reduce)

@@ -67,4 +67,6 @@ instructions: |
   ; => [[1, 3], [nil, 4]]
   ```
 
-tips: []
+tips:
+  - |
+    [Про map, filter, reduce](https://ru.hexlet.io/blog/posts/js-prosto-o-slozhnom-filter-map-reduce)
