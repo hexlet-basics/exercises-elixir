@@ -21,6 +21,7 @@ compose-lint:
 	docker-compose run exercises make code-lint
 
 code-lint:
+	mix format --check-formatted && \
 	mix credo
 
 compose-description-lint:
