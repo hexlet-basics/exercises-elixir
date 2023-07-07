@@ -1,9 +1,10 @@
 defmodule Test do
   use ExUnit.Case
-  import ExUnit.CaptureIO
 
-  test "greets the world" do
-    msg = capture_io(fn -> Solution.hello() end) |> String.trim()
-    assert msg == "Hello, World!"
+  test "max_delta work" do
+    assert Solution.max_delta([], []) == 0
+    assert Solution.max_delta([-5], [-15]) == 10
+    assert Solution.max_delta([0], [42]) == 42
+    assert Solution.max_delta([10, -15, 35], [2, -12, 42]) == 8
   end
 end
