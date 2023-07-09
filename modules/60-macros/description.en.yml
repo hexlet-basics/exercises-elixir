@@ -1,0 +1,4 @@
+---
+name: Macros in Elixir
+description: |
+  In this module we will look at metaprogramming in the Elixir language. Thanks to macros, you can greatly extend the expressiveness of the language by creating DSLs, but the use of macros is black magic, so they must be used with care and understanding.

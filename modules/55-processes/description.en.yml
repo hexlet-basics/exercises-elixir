@@ -1,0 +1,4 @@
+---
+name: Processes
+description: |
+  In Elixir, all code runs inside processes. Processes are isolated from each other, run in parallel, and communicate via messaging. Processes are not the only basis for parallel operation, but they provide the basis for building distributed and fault-tolerant programs. In this module, we will look at the processes and actor model that underlie the language.

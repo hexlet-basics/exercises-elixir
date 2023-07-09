@@ -1,0 +1,4 @@
+---
+name: Errors handling
+description: |
+  In this module we will study error and exception handling in Elixir.
