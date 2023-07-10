@@ -1,9 +1,7 @@
 defmodule Solution do
-
   def process(str, num) do
-  # BEGIN
+    # BEGIN
     str |> String.trim() |> String.downcase() |> String.duplicate(num)
-  # END
+    # END
   end
-
 end

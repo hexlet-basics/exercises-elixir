@@ -4,5 +4,6 @@ defmodule Solution do
     [item1, item2 | _] = list
     item1 + item2
   end
+
   # END
 end

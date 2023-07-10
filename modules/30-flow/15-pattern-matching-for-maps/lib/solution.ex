@@ -9,5 +9,6 @@ defmodule Solution do
     %{^key => value} = data
     value
   end
+
   # END
 end

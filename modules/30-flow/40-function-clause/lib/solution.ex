@@ -1,5 +1,4 @@
 defmodule Solution do
-
   @type cell :: :x | :o | :f
   @type row :: {cell, cell, cell}
   @type game_state :: {row, row, row}
@@ -10,11 +9,13 @@ defmodule Solution do
   def valid_game?({row1, row2, row3}) do
     valid_row(row1) and valid_row(row2) and valid_row(row3)
   end
+
   def valid_game?(_), do: false
 
   def valid_row({cell1, cell2, cell3}) do
     valid_cell(cell1) and valid_cell(cell2) and valid_cell(cell3)
   end
+
   def valid_row(_), do: false
 
   def valid_cell(:x), do: true

@@ -7,5 +7,6 @@ defmodule Solution do
   def truthy?(a, b) do
     a && b
   end
+
   # END
 end

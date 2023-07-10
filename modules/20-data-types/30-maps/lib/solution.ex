@@ -12,5 +12,6 @@ defmodule Solution do
     value = Map.get(from_map, key, default_value)
     Map.put(to_map, key, value)
   end
+
   # END
 end
