@@ -1,7 +1,7 @@
 defmodule Solution do
   # BEGIN
-  def hello do
-    IO.puts("Hello, World!")
+  def generate(num) do
+    Stream.repeatedly(fn -> Enum.random(1..20) end) |> Enum.take(num)
   end
 
   # END
