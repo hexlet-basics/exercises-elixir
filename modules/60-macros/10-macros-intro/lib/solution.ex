@@ -1,6 +1,8 @@
 defmodule Solution do
   # BEGIN
-  def hello_world, do: :hello_world
+  defmacro my_abs(x) do
+    {:abs, [], [x]}
+  end
 
   # END
 end
