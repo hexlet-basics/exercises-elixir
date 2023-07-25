@@ -1,7 +1,12 @@
 defmodule Test do
   use ExUnit.Case
 
-  test "hello world" do
-    assert Solution.hello_world() == :hello_world
+  require Solution
+
+  test "my_abs macro work" do
+    assert Solution.my_abs(-2) == 2
+    assert Solution.my_abs(2) == 2
+    assert Solution.my_abs(-5 * 100) == 500
+    assert Solution.my_abs(-2 - 100 + 1) == 101
   end
 end
