@@ -14,17 +14,14 @@ defmodule Test do
   end
 
   test "with_logging work" do
-    assert with_io(fn ->
-             Exercise.run_fn(fn -> 1 + 5 end)
-           end) == {6, "Started execution...\nExecution result is: 6\n"}
+    assert capture_io(fn -> Exercise.run_fn(fn -> 1 + 5 end) end) ==
+             "Started execution...\nExecution result is: 6\n"
 
-    assert with_io(fn ->
-             Exercise.run_fn(fn -> %{hello: :world} end)
-           end) ==
-             {%{hello: :world}, "Started execution...\nExecution result is: %{hello: :world}\n"}
+    assert capture_io(fn -> Exercise.run_fn(fn -> %{hello: :world} end) end) ==
+             "Started execution...\nExecution result is: %{hello: :world}\n"
 
-    assert with_io(fn ->
+    assert capture_io(fn ->
              Exercise.run_fn(fn -> "some string" end)
-           end) == {"some string", "Started execution...\nExecution result is: \"some string\"\n"}
+           end) == "Started execution...\nExecution result is: \"some string\"\n"
   end
 end
