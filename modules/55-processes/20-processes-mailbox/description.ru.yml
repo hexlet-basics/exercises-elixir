@@ -1,0 +1,125 @@
+---
+name: Почтовый ящик процессов
+theory: |
+
+  Как было упомянуто в прошлом занятии, процессы общаются между собой с помощью *сообщений*. Для отправки сообщений используется функция `send`. Каждый процесс имеет собственный *почтовый ящик*, который он читает с помощью функции `receive`. Рассмотрим на примере:
+
+  ```elixir
+  send(self(), {:hello, "world"})
+  # => {:hello, "world"}
+
+  receive do
+    {:hello, msg} -> msg
+    {:world, _} -> "unmatched expression"
+  end
+  # => "world"
+  ```
+
+  Блок кода `receive` при получении сообщения, проходится по всему почтовому ящику в поиске совпадений по шаблону сообщений.
+
+  Отправка сообщений через `send` является неблокирующей операцией, то есть сообщения процессу отправляются *асинхронно*. Так как весь Elixir код выполняется в каком-то процессе, то процесс может отправлять сообщения самому себе.
+
+  Почтовые ящики у процессов могут переполняться, поэтому важно указывать базовый паттерн, в который попадут все остальные сообщения из ящика. Блок `receive` закончит выполнение при первом совпадении паттерна, в ином случае процесс заблокируется в ожидании подходящего сообщения, либо, по истечению указанного таймаута:
+
+  ```elixir
+  receive do
+    {:hello, msg} -> msg
+  after
+    1_000 -> "message await stopped after 1 second"
+  end
+  # => "message await stopped after 1 second"
+  ```
+
+  Теперь создадим отдельный процесс, который отправит сообщение в процесс родитель:
+
+  ```elixir
+  parent = self()
+  # => #PID<0.105.0>
+
+  spawn(fn -> send(parent, {:hello, self()}) end)
+  # => #PID<0.6946.12>
+
+  receive do
+    {:hello, pid} -> "Got hello from #{inspect(pid)}"
+  end
+  # => "Got hello from #PID<0.6946.12>"
+  ```
+
+  Так как `receive` завершается по таймауту или успешной обработке сообщения, то как сделать обработку процессом сообщений постоянной? Рекурсивный вызов `receive`, конечно же!
+
+  ```elixir
+  defmodule Processor do
+    def process() do
+      receive do
+        {:hello, msg} ->
+          IO.puts(msg)
+          process()
+
+        {:world, msg} ->
+          IO.puts(String.upcase(msg))
+          process()
+
+        {:exit, _} -> IO.puts("Shutdown processor...")
+      end
+    end
+  end
+
+  processor = spawn(fn -> Processor.process() end)
+  # => #PID<0.6952.12>
+  Process.alive?(processor)
+  # => true
+
+  send(processor, {:hello, "code basic"})
+  # => code basic
+  Process.alive?(processor)
+  # => true
+
+  send(processor, {:hello, "code basic"})
+  # => CODE BASIC
+  Process.alive?(processor)
+  # => true
+
+  send(processor, {:exit, ""})
+  # => Shutdown processor...
+  Process.alive?(processor)
+  # => false
+  ```
+
+instructions: |
+
+  Создайте функцию `calculate` которая принимает процесс-получатель и поддерживает операции `:+`, `:-`, `:*` в виде сообщений от процесса и при обработке возвращает сообщение процессу отправителю с результатом, функция должна поддерживать постоянную обработку сообщений. При передаче сообщения `:exit`, функция перестает обрабатывать входящие сообщения:
+
+  ```elixir
+  parent = self()
+  calculator = spawn(fn -> Solution.calculate(parent) end)
+
+  send(calculator, {:+, [2, 5]})
+  receive do
+    {:ok, result} -> result
+  end
+  # => 7
+  Process.alive?(calculator)
+  # => true
+
+  send(calculator, {:*, [2, 5]})
+  receive do
+    {:ok, result} -> result
+  end
+  # => 10
+  Process.alive?(calculator)
+  # => true
+
+  send(calculator, {:exit})
+  receive do
+    {:ok, result} -> result
+  end
+  # => :exited
+  Process.alive?(calculator)
+  # => false
+  ```
+
+tips:
+  - |
+    [Конкурентность на примере процессов Elixir](https://www.youtube.com/watch?v=A4x6IfceJCM)
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Process.html)
