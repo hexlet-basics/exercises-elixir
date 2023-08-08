@@ -63,3 +63,5 @@ tips:
     [Про ООП в Erlang](https://www.infoq.com/interviews/johnson-armstrong-oop/)
   - |
     [Видео про BEAM и процессы](https://www.youtube.com/watch?v=JvBT4XBdoUE)
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Process.html)
