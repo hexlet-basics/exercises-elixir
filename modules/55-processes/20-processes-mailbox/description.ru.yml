@@ -70,7 +70,12 @@ theory: |
   # => true
 
   send(processor, {:hello, "code basic"})
+  # для просмотра почтового ящика родительского процесса
+  # далее по коду будет подразумеваться, что эта строчка кода
+  # будет вызываться после каждой отправки сообщения другому процессу
+  Process.info(parent, :messages)
   # => code basic
+
   Process.alive?(processor)
   # => true
 
