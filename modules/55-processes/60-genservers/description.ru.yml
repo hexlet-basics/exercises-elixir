@@ -1,0 +1,223 @@
+---
+name: Генсерверы
+theory: |
+
+  Генсерверы являются основным строительным кирпичиком OTP. Генсервер - это процесс, который может хранить состояние, выполнять какой-либо код, не обязательно синхронно и т.д. Отличие обычных процессов от обобщенных серверных процессов (general servers)  в том, что разработчики OTP заранее подготовили все необходимое, что зачастую нужно для работы с процессом. Например, обработка ошибок, написание функций обратного вызова, встраивание в дерево супервизии.
+
+  Возникает вопрос, а в чем разница между `Agent` и `GenServer`, ведь с первого взгляда они делают одно и то же. Разница в том, что абстракция `Agent` построена на основе `GenServer`, например в `Agent` управление состоянием происходит через функцию `Agent.update`, в то время как у `GenServer` состоянием нужно управлять вручную. Абстракция агентов построена вокруг какого-либо *состояния*, в то время как генсервер может и не обладать состоянием, а только выполнять какую-либо работу.
+
+  На самом деле, в первых упражнениях мы уже написали некоторое подобие генсервера, которое работает по схеме:
+
+  ```text
+  _______________         _____________
+  |client module|    <->  |server call|
+  ---------------         -------------
+                               ^
+                               |
+                               v
+  __________________      _____________
+  |server callbacks| <->  |server loop|
+  ------------------      -------------
+  ```
+
+  Модуль клиент и вызов сервера работают в потоке клиента, цикл сервера и его функции обратного вызова работают в потоке сервера. По сути так и работает генсервер. Теперь рассмотрим, как будет выглядеть счетчик генсервер:
+
+  ```elixir
+  defmodule Counter do
+    use GenServer
+
+    def init(initial_state \\ 0) do
+      {:ok, initial_state}
+    end
+
+    def current, do: GenServer.call(__MODULE__, :current)
+    def inc, do: GenServer.cast(__MODULE__, :inc)
+    def dec, do: GenServer.cast(__MODULE__, :dec)
+
+    def handle_call(:current, _from, state) do
+      {:reply, state, state}
+    end
+
+    def handle_cast(:inc, state) do
+      {:noreply, state + 1}
+    end
+
+    def handle_cast(:dec, state) do
+      {:noreply, state - 1}
+    end
+  end
+  ```
+
+  И проверим счетчик в работе:
+
+  ```elixir
+  # создаем и регистрируем процесс генсервер
+  GenServer.start_link(Counter, 0, name: Counter)
+  # => {:ok, #PID<0.115.0>}
+
+  Counter.current()
+  # => 0
+
+  Counter.inc()
+  # => :ok
+  Counter.inc()
+  # => :ok
+  Counter.inc()
+  # => :ok
+  Counter.current()
+  # => 3
+
+  Counter.dec()
+  # => :ok
+  Counter.dec()
+  # => :ok
+  Counter.current()
+  # => 1
+  ```
+
+  Как и в случае с агентами, внутри генсервера мы описываем функции для клиентской части и серверной, вызов серверной части происходит во время обработки сообщения процесса генсервера, а конкретнее в функциях обратного вызова `handle_call`, `handle_cast` и `handle_info`. Эти функции действую следующим образом:
+  - `handle_call` - синхронный обработчик сообщения, когда клиенту важен ответ от сервера и он блокируется, в ожидании оного;
+  - `handle_cast` - асинхронный обработчик сообщения, когда клиент не хочет блокироваться и ждать ответа от сервера;
+  - `handle_info` - низкоуровневый асинхронный обработчик, срабатывает когда сообщение серверу передается напрямую, а не через `GenServer.call`, `GenServer.cast`. Зачастую используется для внутренних задач генсервера, например по таймеру обнулять состояние генсервера или сделать http вызов. Еще можно использовать этот обработчик в качестве мониторинга за другим процессом через обработку сообщения `:DOWN`.
+
+  Важно понимать, что обработчики `handle_call`, `handle_cast` и `handle_info` при определении завязываются на конкретные сообщения, которые они обрабатывают, поэтому важно описать паттерн catch all, который перехватит сообщения, которые генсервер не знает как обработать. Если же не описать обобщенный вариант обработки сообщения, то процесс генсервер аварийно завершится при таком вызове:
+
+  ```elixir
+  GenServer.call(Counter, :do_something_different)
+  # => 15:30:36.108 [error] GenServer Counter terminating
+  # => ** (FunctionClauseError) no function clause matching in Counter.handle_call/3
+  # =>   iex:12: Counter.handle_call(:do_something_different, {#PID<0.109.0>, [:alias | #Reference<0.0.13955.4010078260.1056243713.84046>]}, 0)
+  # =>   (stdlib 5.0.2) gen_server.erl:1113: :gen_server.try_handle_call/4
+  # =>   (stdlib 5.0.2) gen_server.erl:1142: :gen_server.handle_msg/6
+  # =>   (stdlib 5.0.2) proc_lib.erl:241: :proc_lib.init_p_do_apply/3
+  ```
+
+  Поэтому допишем общие обработчики, которые перехватят любое сообщение:
+
+  ```elixir
+  defmodule Counter do
+    use GenServer
+
+    def init(initial_state \\ 0) do
+      {:ok, initial_state}
+    end
+
+    # other code...
+    def handle_call(msg, _from, state) do
+      IO.puts("handle_call intercept unknown message: #{inspect(msg)}")
+      {:reply, {:error, :unknown_msg}, state}
+    end
+
+    def handle_cast(msg, state) do
+      IO.puts("handle_cast intercept unknown message: #{inspect(msg)}")
+      {:noreply, state}
+    end
+  end
+  ```
+
+  Теперь проверим в работе:
+
+  ```elixir
+  GenServer.call(Counter, :some)
+  # => handle_call intercept unknown message: :some
+  # => {:error, :unknown_msg}
+
+  GenServer.cast(Counter, :some)
+  # => handle_cast intercept unknown message: :some
+  # => :ok
+
+  GenServer.call(Counter, :current)
+  # => 0
+  ```
+
+  В случае с `handle_info` нет необходимости отдельно прописывать функцию обратного вызова, так как она добавляется при вызове `use GenServer`:
+
+  ```elixir
+  send(Counter, :my_msg)
+  # => :my_msg
+  # => 15:57:56.871 [error] Counter Counter received unexpected message in handle_info/2: :my_msg
+  # однако процесс не завершился
+
+  Process.alive?(Process.whereis(Counter))
+  # => true
+  ```
+
+  Помимо предотвращения аварийных ситуаций, общий шаблон обработки сообщений не позволит почтовому ящику генсервера переполнится, так как в BEAM нет никаких ограничений на количество сообщений в ящике процесса. А сообщения, под которые нет общих обработчиков продолжат висеть в очереди почтового ящика до тех пор, пока память не переполнится и не сработает OOM-killer операционной системы, который аварийно завершит весь узел BEAM. Однако, иногда переполнение может возникнуть из-за медленной скорости обработки сообщений, в таких случаях используют пул генсерверов, которые будут вести обработку сообщений параллельно.
+
+  Есть еще обработчик `terminate`, он срабатывает при завершении генсервера, например, в этом обработчике можно подчистить какие-либо ресурсы или что-то логгировать. Однако этот обработчик используется редко и вызывается он если только пометить процесс генсервера как системный, то есть через `Process.flag(:trap_exit, true)`. В целом, если нет какой-либо острой нужды в сохранении состояния или освобождения ресурсов после завершения процесса, то использовать этот обработчик нет необходимости.
+
+  Мы рассмотрели необходимый минимум, чтобы понимать, что такое процессы в Elixir экосистеме, что такое OTP и как все это использовать. Познакомились с абстракциями `Supervisor`, `GenServer`, `Agent` и узнали о дереве супервизии. Для еще лучшего понимания, какие идеи стоят за процессами, стоит почитать про акторную модель и историю языка Erlang.
+
+instructions: |
+
+  В файле с решением описана инициализация генсервера-кеша, ваша задача дописать модуль `Solution`, добавив следующие функции:
+  - `add/2` - функция добавляющая в кеш ключ-значение, асинхронная;
+  - `drop/1` - функция, удаляющая из кеша значение по переданному ключу, асинхронная;
+  - `reset/0` - функция, сбрасывающая состояние генсервера, асинхронная;
+  - 'current_state/0' - функция, возвращающая состояние генсервера, синхронная;
+  - 'has?/1' - функция, проверяющая, есть ли переданный ключ в состоянии генсервера, синхронная.
+
+  Если не понятно, использовать `handle_cast` или `handle_call`, то изучите семантику реализуемых функций, нужен ли ответ от генсервера или нет.
+
+  ```elixir
+  Solution.start_link()
+  # => {:ok, #PID<0.121.0>}
+
+  Solution.current_state()
+  # => %{}
+
+  Solution.add(:my_key, "value")
+  # => :ok
+
+  Solution.current_state()
+  # => %{my_key: "value"}
+
+  Solution.has?(:my_key)
+  # => true
+
+  Solution.has?(:other_key)
+  # => false
+
+  Solution.drop(:not_existing_key)
+  # => :ok
+
+  Solution.current_state()
+  # => %{my_key: "value"}
+
+  Solution.drop(:my_key)
+  # => :ok
+
+  Solution.current_state()
+  # => %{}
+
+  1..10 |> Enum.each(&(Solution.add("key_#{&1}", "value_#{&1}")))
+
+  Solution.current_state()
+  # => %{
+  # =>   "key_1" => "value_1",
+  # =>   "key_10" => "value_10",
+  # =>   "key_2" => "value_2",
+  # =>   "key_3" => "value_3",
+  # =>   "key_4" => "value_4",
+  # =>   "key_5" => "value_5",
+  # =>   "key_6" => "value_6",
+  # =>   "key_7" => "value_7",
+  # =>   "key_8" => "value_8",
+  # =>   "key_9" => "value_9"
+  # => }
+
+  Solution.reset()
+  # => :ok
+  Solution.current_state()
+  # => %{}
+  ```
+
+tips:
+  - |
+    [Официальная документация GenServer](https://hexdocs.pm/elixir/GenServer.html)
+  - |
+    [Акторная модель](https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C_%D0%B0%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2#:~:text=%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C%20%D0%B0%CC%81%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2%20%E2%80%94%20%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C%20%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D1%85,%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%8E%D1%89%D0%B5%D0%B3%D0%BE%D1%81%D1%8F%20%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%20%D0%BF%D1%80%D0%B8%D0%BC%D0%B8%D1%82%D0%B8%D0%B2%D0%BE%D0%BC%20%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F.)
+  - |
+    [История Erlang](https://habr.com/ru/companies/ruvds/articles/749192/)
+  - |
+    [Цитаты Джо Армстронга, создателя Erlang](https://habr.com/ru/articles/508696/)
