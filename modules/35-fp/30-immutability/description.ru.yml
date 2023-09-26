@@ -25,16 +25,15 @@ theory: |
   Для примера рассмотрим код:
 
   ```elixir
-  iex(1)> my_list = [1, 2, 3]
-  [1, 2, 3]
-  iex(2)> my_list = my_list ++ [4, 5]
-  [1, 2, 3, 4, 5]
-  iex(3)> my_list = my_list ++ [6, 7, 8]
-  [1, 2, 3, 4, 5, 4, 5, 6, 7, 8]
+  my_list = [1, 2, 3]
+  # => [1, 2, 3]
+  my_list = my_list ++ [4, 5]
+  # => [1, 2, 3, 4, 5]
+  my_list = my_list ++ [6, 7, 8]
+  # => [1, 2, 3, 4, 5, 4, 5, 6, 7, 8]
   ```
 
   Здесь мы имеем 3 списка, каждый из них размещен в своей области памяти. И здесь только одна переменная, которая сперва указывает на первый список, затем на второй, затем на третий.
-
 
   ## Переиспользование памяти (Structure Sharing)
 
@@ -44,19 +43,20 @@ theory: |
 
   В примере выше, 3 списка совместно используют одну и ту же область памяти. А новая память выделяется только под новые элементы. Аналогично работает и Map.
 
-  ```
-  iex(1)> my_map = %{a: 42}
-  %{a: 42}
-  iex(2)> other_map = Map.put(my_map, :b, 500)
-  %{a: 42, b: 500}
-  iex(3)> yet_another_map = Map.put(my_map, :c, 100500)
-  %{a: 42, c: 100500}
-  iex(4)> my_map
-  %{a: 42}
-  iex(5)> other_map
-  %{a: 42, b: 500}
-  iex(6)> yet_another_map
-  %{a: 42, c: 100500}
+  ```elixir
+  my_map = %{a: 42}
+  # => %{a: 42}
+  other_map = Map.put(my_map, :b, 500)
+  # => %{a: 42, b: 500}
+  yet_another_map = Map.put(my_map, :c, 100500)
+  # => %{a: 42, c: 100500}
+  
+  my_map
+  # => %{a: 42}
+  other_map
+  # => %{a: 42, b: 500}
+  yet_another_map
+  # => %{a: 42, c: 100500}
   ```
   
 instructions: |
@@ -66,20 +66,21 @@ instructions: |
   Нужно реализовать функцию `encode/2`, которая принимает строку и сдвиг, и возвращает зашифрованную строку.
 
   ```elixir
-  > Solution.encode('Hello', 10)
-  'Rovvy'
-  > Solution.encode('Hello', 5)
-  'Mjqqt'
+  Solution.encode('Hello', 10)
+  # => 'Rovvy'
+  Solution.encode('Hello', 5)
+  # => 'Mjqqt'
   ```
 
   Также нужно реализовать функцию `decode/2`, которая принимает зашифрованную строку и сдвиг, и возвращает оригинальную строку.
 
-
   ```elixir
-  > Solution.decode('Rovvy', 10)
-  'Hello'
-  > Solution.decode('Mjqqt', 5)
-  'Hello'
+  Solution.decode('Rovvy', 10)
+  # => 'Hello'
+  Solution.decode('Mjqqt', 5)
+  # => 'Hello'
   ```
 
-tips: []
+tips:
+  - |
+    [Объяснение иммутабельных структур данных на примере Clojure](https://youtu.be/wASCH_gPnDw?si=l7jkfOLZxDNyu30G&t=1815)
