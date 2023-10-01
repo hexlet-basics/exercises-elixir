@@ -88,16 +88,12 @@ instructions: |
 
   Реализуйте функцию `truthy?(a, b)`, которая принимает два аргумента любого типа, и если первый аргумент truthy, то функция возвращает второй аргумент.
 
-  ```
-  defmodule Solution do
+  ```elixir
+  Solution.any?(false, false, false, false) # => false
+  Solution.any?(true, false, false, false) # => true
+  Solution.any?(false, true, false, true) # => true
 
-    def any?(a, b, c, d) do
-      # TODO реализация
-    end
-
-    def truthy?(a, b) do
-      # TODO реализация
-    end
-
-  end
+  Solution.truthy?(true, 42) # => 42
+  Solution.truthy?("hello", false) # => false
+  Solution.truthy?("", nil) # => nil
   ```
