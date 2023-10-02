@@ -52,3 +52,5 @@ instructions: |
 tips:
   - |
     [Документация для String](https://hexdocs.pm/elixir/String.html)
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Kernel.html#%7C%3E/2)
