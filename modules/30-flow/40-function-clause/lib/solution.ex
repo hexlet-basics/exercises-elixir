@@ -1,11 +1,5 @@
 defmodule Solution do
-  @type cell :: :x | :o | :f
-  @type row :: {cell, cell, cell}
-  @type game_state :: {row, row, row}
-  @type game_result :: {:win, :x} | {:win, :o} | :no_win
-
   # BEGIN
-  @spec valid_game?(game_state) :: boolean
   def valid_game?({row1, row2, row3}) do
     valid_row(row1) and valid_row(row2) and valid_row(row3)
   end
@@ -23,7 +17,6 @@ defmodule Solution do
   def valid_cell(:f), do: true
   def valid_cell(_), do: false
 
-  @spec check_who_win(game_state) :: game_result
   def check_who_win({{c, c, c}, _, _}) when c != :f, do: {:win, c}
   def check_who_win({_, {c, c, c}, _}) when c != :f, do: {:win, c}
   def check_who_win({_, _, {c, c, c}}) when c != :f, do: {:win, c}
