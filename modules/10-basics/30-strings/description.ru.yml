@@ -32,13 +32,11 @@ instructions: |
   Реализуйте функцию `concate_and_upcase`, которая принимает две строки, соединяет их вместе, удаляет пробелы в начале и в конце, и переводит в верхний регистр только символы латинского алфавита.
 
   ```elixir
-  defmodule Solution do
-    def concate_and_upcase(str1, str2) do
-      # TODO реализация
-    end
-  end
+  Solution.concate_and_upcase(" привет ", "world!")
+  # => "привет WORLD!"
 
-  IO.puts(Solution.concate_and_upcase("привет ", "world!"))
+  Solution.concate_and_upcase("hello ", "мир!  ")
+  # => "HELLO мир!"
   ```
 
 tips:
