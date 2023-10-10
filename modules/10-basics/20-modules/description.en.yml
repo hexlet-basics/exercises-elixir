@@ -10,7 +10,7 @@ theory: |
 
   Modules are defined with a special contstruct _defmodule/do/end_:
 
-  ```
+  ```elixir
   # use CamelCase for name
   defmodule HexletBasics do
     # Here goes module contains
