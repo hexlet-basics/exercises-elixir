@@ -85,11 +85,12 @@ theory: |
   distance({:point, -5, -5}, {:point, 10, 10})  # 21.213203435596427
   ```
 
-  
+  При объявлении, атом сохраняется внутри памяти программы в виде числа, из-за чего сравнения атомов происходят быстрее, чем строк. Однако, если бесконтрольно объявлять атомы, например, из пользовательского ввода, то память приложения переполнится. Атомы не вычищаются сборщиком мусора BEAM. Хоть и максимальное число атомов, которые можно создать - 1,048,576, не стоит заводить атомы на каждое действие.
+
 instructions: |
 
   Реализовать функцию `is_point_inside_circle(point, circle)`, которая принимает точку и окружность, и возвращает `true`, если точка находится внутри окружности, или `false`, если точка находится снаружи.
-  
+
   Реализовать функцию `is_point_inside_rect(point, rect)`, которая принимает точку и прямоугольник, и возвращает `true`, если точка находится внутри прямоугольника, или `false`, если точка находится снаружи.
 
   Точка представлена кортежем `{:point, x, y}`.
@@ -101,21 +102,19 @@ instructions: |
   Уже реализованная функция distance может вам пригодиться:
 
   ```elixir
-  defmodule Solution do
+  Solution.is_point_inside_circle(point, {:circle, {:point, 10, 10}, 100})
+  # => true
+  Solution.is_point_inside_circle(point, {:circle, {:point, -10, -10}, 20})
+  # => false
 
-    def distance({:point, x1, y1}, {:point, x2, y2}) do
-      # ...
-    end
-
-    def is_point_inside_circle(point, circle) do
-      # TODO реализация
-    end
-
-    def is_point_inside_rect(point, rect) do
-      # TODO реализация
-    end
-
-  end
+  Solution.is_point_inside_rect(point, {:rect, {:point, -20, 30}, {:point, 20, 10}})
+  # => true
+  Solution.is_point_inside_rect(point, {:rect, {:point, 0, 0}, {:point, 10, 10}})
+  # => false
   ```
 
-tips: []
+tips:
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Atom.html)
+  - |
+    [Почему максимальное число атомов 1,048,576](https://www.erlang.org/doc/man/erl.html#+t)

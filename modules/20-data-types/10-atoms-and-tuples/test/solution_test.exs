@@ -2,7 +2,7 @@ defmodule Test do
   use ExUnit.Case
   import Solution
 
-  test "distance" do
+  test "distance not changed" do
     assert 5.0 == distance({:point, 0, 0}, {:point, 0, 5})
     assert 5.0 == distance({:point, 5, 0}, {:point, 0, 0})
     assert 0.0 == distance({:point, 5, 5}, {:point, 5, 5})
@@ -10,7 +10,7 @@ defmodule Test do
     assert 5.0 == distance({:point, 0, 0}, {:point, -3, -4})
   end
 
-  test "bigger distance" do
+  test "bigger distance not changed" do
     assert 12.806248474865697 == distance({:point, 2, 2}, {:point, 10, 12})
     assert 21.213203435596427 == distance({:point, -5, -5}, {:point, 10, 10})
     assert 21.400934559032695 == distance({:point, -5, 5}, {:point, 8, -12})
