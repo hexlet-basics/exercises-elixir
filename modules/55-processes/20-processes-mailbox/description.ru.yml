@@ -79,7 +79,7 @@ theory: |
   Process.alive?(processor)
   # => true
 
-  send(processor, {:hello, "code basic"})
+  send(processor, {:world, "code basic"})
   # => CODE BASIC
   Process.alive?(processor)
   # => true
