@@ -104,7 +104,7 @@ theory: |
   pid = spawn(fn -> Process.sleep(:timer.seconds(20)) end)
   #PID<0.118.0>
 
-  Process.register(p, :my_process)
+  Process.register(pid, :my_process)
   # => true
 
   Process.registered()
