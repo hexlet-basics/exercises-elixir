@@ -37,8 +37,8 @@ theory: |
   Macro.unpipe(quoted_pipe)
   # => [
   # =>   {100, 0},
-  # =>   {{:div, [context: Elixir, imports: [{2, Kernel}]], [5]}, 0},
-  # =>   {{:div, [context: Elixir, imports: [{2, Kernel}]], [2]}, 0}
+  # =>   {{:div, [context: Elixir, imports: [{2, Kernel}]], [10]}, 0},
+  # =>   {{:div, [context: Elixir, imports: [{2, Kernel}]], [5]}, 0}
   # => ]
   ```
 
