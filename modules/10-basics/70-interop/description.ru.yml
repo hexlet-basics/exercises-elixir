@@ -67,15 +67,15 @@ theory: |
   # функция подсчитывающее количество слов из erlang
   :string.words("Hello World")
   # => ** (FunctionClauseError) no function clause matching in :string.strip_left/2
-  # => 
+  # =>
   # =>   The following arguments were given to :string.strip_left/2:
-  # => 
+  # =>
   # =>       # 1
   # =>       "Hello World"
-  # => 
+  # =>
   # =>       # 2
   # =>       32
-  # => 
+  # =>
   # =>   (stdlib) string.erl:1661: :string.strip_left/2
   # =>   (stdlib) string.erl:1659: :string.strip/3
   # =>   (stdlib) string.erl:1597: :string.words/2

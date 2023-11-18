@@ -1,4 +1,5 @@
 ---
 name: Elixir Basics
 description: |
+
   The Elixir language is quite complex. Most of its elements are more complex than they first appear. In the first module, we will look at modules and functions, basic data types and operations with them.

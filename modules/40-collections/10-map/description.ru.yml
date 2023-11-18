@@ -7,7 +7,7 @@ theory: |
 
   ```elixir
   numbers = [1, 2, 3, 4]
-  
+
   doubled_numbers = Enum.map(numbers, fn (x) -> x * 2 end)
   IO.puts(doubled_numbers) # => [2, 4, 6, 8]
 
@@ -25,7 +25,7 @@ theory: |
 
   ```elixir
   numbers = [1, 2, 3]
-  
+
   incremented_numbers = Enum.map(numbers, fn (x) -> x + 1 end)
 
   IO.puts(numbers) # => [1, 2, 3]
@@ -40,7 +40,7 @@ theory: |
   ```elixir
   numbers = [1, 2, 3, 4]
 
-  result = 
+  result =
     numbers
     |> Enum.map(fn (x) -> x + 1 end)
     |> Enum.map(fn (x) -> x * 5 end)
