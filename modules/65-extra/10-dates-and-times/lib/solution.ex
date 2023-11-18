@@ -1,6 +1,8 @@
 defmodule Solution do
-  @spec shift_days(time :: %Time{} | %NaiveDateTime{} | %Date{} | %Time{}, amount :: integer()) ::
-          %Time{} | %NaiveDateTime{} | %Date{} | %Time{}
+  @spec shift_days(
+          time :: Time.t() | NaiveDateTime.t() | Date.t() | Time.t(),
+          amount :: integer()
+        ) :: Time.t() | NaiveDateTime.t() | Date.t() | Time.t()
   # BEGIN
   def shift_days(time, 0), do: time
 
