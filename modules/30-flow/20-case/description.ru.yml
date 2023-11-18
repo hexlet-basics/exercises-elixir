@@ -132,17 +132,17 @@ instructions: |
   Реализовать функцию `move_allowed?(current_color, figure)` которая определяет, разрешено ли данной шахматной фигуре сделать ход. Параметр `current_color` может быть либо `:white` либо `:black`, и он указывает, фигурам какого цвета разрешено сделать ход. Параметр `figure` представлен кортежем `{type, color}`, где `type` может быть один из: `:pawn`, `:rock`, `:bishop`, `:knight`, `:queen`, `:king`, а color может быть `:white` или `:black`. Фигура может сделать ход если её тип `:pawn` или `:rock` и её цвет совпадает с `current_color`. Функция должна вернуть `true` или `false`.
 
   ```elixir
-  defmodule Solution do
+  Solution.join_game({:user, "Bob", 17, :admin})
+  # => :ok
+  Solution.join_game({:user, "Bob", 17, :moderator})
+  # => :ok
+  Solution.join_game({:user, "Bob", 17, :member})
+  # => :error
 
-    def join_game(user) do
-      # TODO реализация
-    end
-
-    def move_allowed?(current_color, figure) do
-      # TODO реализация
-    end
-
-  end
+  Solution.move_allowed?(:white, {:pawn, :white})
+  # => true
+  Solution.move_allowed?(:black, {:pawn, :white})
+  # => false
   ```
 
 tips: []

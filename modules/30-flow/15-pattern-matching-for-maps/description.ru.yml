@@ -67,17 +67,21 @@ instructions: |
   Обе функции генерируют исключение `MatchError` если в словаре нет нужных ключей.
 
   ```elixir
-  defmodule Solution do
+  Solution.get_values(%{a: 1, b: 2})
+  # => {1, 2}
+  Solution.get_values(%{a: :ok, b: 42, c: true})
+  # => {:ok, 42}
 
-    def get_values(data) do
-      # TODO реализация
-    end
+  Solution.get_values(%{})
+  # => MatchError
 
-    def get_value_by_key(data, key) do
-      # TODO реализация
-    end
+  Solution.get_value_by_key(%{answer: 42}, :answer)
+  # => 42
+  Solution.get_value_by_key(%{question: "6 * 7"}, :question)
+  # => "6 * 7"
 
-  end
+  Solution.get_value_by_key(%{a: 1}, :b)
+  # => MatchError
   ```
 
 tips: []
