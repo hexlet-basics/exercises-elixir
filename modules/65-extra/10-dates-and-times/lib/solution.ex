@@ -7,7 +7,7 @@ defmodule Solution do
   def shift_days(time, 0), do: time
 
   def shift_days(%Time{} = time, amount) when is_integer(amount) do
-    Time.add(time, days_to_seconds(amount) * 24, :second)
+    Time.add(time, days_to_seconds(amount), :second)
   end
 
   def shift_days(%NaiveDateTime{} = time, amount) when is_integer(amount) do
