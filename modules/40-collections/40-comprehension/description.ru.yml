@@ -86,10 +86,10 @@ instructions: |
 
 
   Solution.fetch_gamers(employees)
-  # [
-  #   {"Eric", %{name: "Text Adventures", type: :gaming}},
-  #   {"Greg", %{name: "Dungeons & Dragons", type: :gaming}}
-  # ]
+  # => [
+  # =>   {"Eric", %{name: "Text Adventures", type: :gaming}},
+  # =>   {"Greg", %{name: "Dungeons & Dragons", type: :gaming}}
+  # => ]
   ```
 
 tips:
