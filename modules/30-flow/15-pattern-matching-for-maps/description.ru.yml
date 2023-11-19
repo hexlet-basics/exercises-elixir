@@ -8,6 +8,7 @@ theory: |
   ```elixir
   my_map = %{a: 1, b: 2, c: 3}
   %{a: value} = my_map
+
   IO.puts(value) # => 1
   ```
 
@@ -17,6 +18,7 @@ theory: |
   my_map = %{"a" => 1, "b" => 2, "c" => 3}
   %{"a" => value1} = my_map
   IO.puts(value1) # => 1
+
   %{"b" => value2, "c" => value3} = my_map
   IO.puts(value2) # => 2
   IO.puts(value3) # => 3
@@ -36,6 +38,7 @@ theory: |
   ```elixir
   %{"c" => my_var} = my_map
   IO.puts(my_var) # => 3
+  
   %{my_var => 1} = my_map # ** (CompileError) iex:17: cannot use variable my_var as map key inside a pattern.
   ```
 
