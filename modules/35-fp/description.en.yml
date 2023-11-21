@@ -1,6 +1,7 @@
 ---
 name: Functional Programming Basics
 description: |
+
   Elixir is a bright representative of the family of functional languages. It's time to learn what functional programming is, what elements it consists of, and how it differs from other programming paradigms.
 
   We have already been introduced to one of the most important elements of FP - pattern matching. Now let us consider the other elements: immutability, recursion, higher-order functions, and anonymous functions.

@@ -60,7 +60,7 @@ theory: |
 
 instructions: |
 
-  Создайте функцию `fetch_gamers`, которая принимает список сотрудников и выводит список активных сотрудников (статус `:active`) сотрудников у которых хобби связаны с играми (тип хобби `:gaming`). Структура сотрудников описана в примере: 
+  Создайте функцию `fetch_gamers`, которая принимает список сотрудников и выводит список активных сотрудников (статус `:active`) сотрудников у которых хобби связаны с играми (тип хобби `:gaming`). Структура сотрудников описана в примере:
 
   ```elixir
   employees = [
@@ -86,10 +86,10 @@ instructions: |
 
 
   Solution.fetch_gamers(employees)
-  # [
-  #   {"Eric", %{name: "Text Adventures", type: :gaming}},
-  #   {"Greg", %{name: "Dungeons & Dragons", type: :gaming}}
-  # ]
+  # => [
+  # =>   {"Eric", %{name: "Text Adventures", type: :gaming}},
+  # =>   {"Greg", %{name: "Dungeons & Dragons", type: :gaming}}
+  # => ]
   ```
 
 tips:

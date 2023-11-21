@@ -29,24 +29,26 @@ theory: |
   Применим рекурсивную функцию с аккумулятором:
 
   ```elixir
-  def filter_adults(users), do: filter_adults(users, [])
+  defmodule Solution do
+    def filter_adults(users), do: filter_adults(users, [])
 
-  defp filter_adults([], acc), do: Enum.reverse(acc)
+    defp filter_adults([], acc), do: Enum.reverse(acc)
 
-  defp filter_adults([user | users], acc) do
-    {:user, _, _, age} = user
-    if age > 16 do
-      filter_adults(users, [user | acc])
-    else
-      filter_adults(users, acc)
+    defp filter_adults([user | users], acc) do
+      {:user, _, _, age} = user
+      if age > 16 do
+        filter_adults(users, [user | acc])
+      else
+        filter_adults(users, acc)
+      end
     end
   end
 
-  > Solition.filter_adults(users)
-  [
-    {:user, 1, "Bob", 23},
-    {:user, 2, "Helen", 20}
-  ]
+  Solition.filter_adults(users)
+  # => [
+  # =>   {:user, 1, "Bob", 23},
+  # =>   {:user, 2, "Helen", 20}
+  # => ]
   ```
 
   Функция получает на вход два аргумента: список пользователей, и ещё один список, где будет накапливаться результат выполнения -- аккумулятор. В начале выполнения список пользователей полный, а аккумулятор пустой. На каждом шаге итерации мы будем брать один элемент из первого списка, и, если он нам нужен, то класть его в аккумулятор. В итоге первый список опустошится, а аккумулятор наполнится.
@@ -71,17 +73,19 @@ theory: |
   Реализация:
 
   ```elixir
-  def get_id_name(users), do: get_id_name(users, [])
+  defmodule Solution do
+    def get_id_name(users), do: get_id_name(users, [])
 
-  defp get_id_name([], acc), do: Enum.reverse(acc)
+    defp get_id_name([], acc), do: Enum.reverse(acc)
 
-  defp get_id_name([user | users], acc) do
-    {:user, id, name, _} = user
-    get_id_name(users, [{id, name} | acc])
+    defp get_id_name([user | users], acc) do
+      {:user, id, name, _} = user
+      get_id_name(users, [{id, name} | acc])
+    end
   end
 
-  > Solution.get_id_name(users)
-  [{1, "Bob"}, {2, "Helen"}, {3, "Bill"}, {4, "Kate"}]
+  Solution.get_id_name(users)
+  # => [{1, "Bob"}, {2, "Helen"}, {3, "Bill"}, {4, "Kate"}]
   ```
 
   Опять два тела у функции. Первое тело отвечает за завершение рекурсии и возврат результата, накопленного в аккумуляторе.
@@ -96,24 +100,26 @@ theory: |
   И вот пример со сложным аккумулятором. Допустим нам нужно разделить пользователей на два списка: несовершеннолетние и взрослые.
 
   ```elixir
-  def split_teens_and_adults(users), do: split_teens_and_adults(users, {[], []})
+  defmodule Solution do
+    def split_teens_and_adults(users), do: split_teens_and_adults(users, {[], []})
 
-  defp split_teens_and_adults([], {teens, adults}) do
-    {Enum.reverse(teens), Enum.reverse(adults)}
-  end
+    defp split_teens_and_adults([], {teens, adults}) do
+      {Enum.reverse(teens), Enum.reverse(adults)}
+    end
 
-  defp split_teens_and_adults([user | users], {teens, adults}) do
-    {:user, _, _, age} = user
-    if age > 16 do
-      split_teens_and_adults(users, {teens, [user | adults]})
-    else
-      split_teens_and_adults(users, {[user | teens], adults})
+    defp split_teens_and_adults([user | users], {teens, adults}) do
+      {:user, _, _, age} = user
+      if age > 16 do
+        split_teens_and_adults(users, {teens, [user | adults]})
+      else
+        split_teens_and_adults(users, {[user | teens], adults})
+      end
     end
   end
 
-  > Solution.split_teens_and_adults(users)
-  {[{:user, 3, "Bill", 15}, {:user, 4, "Kate", 14}],
-   [{:user, 1, "Bob", 23}, {:user, 2, "Helen", 20}]}
+  Solution.split_teens_and_adults(users)
+  # => {[{:user, 3, "Bill", 15}, {:user, 4, "Kate", 14}],
+  # =>  [{:user, 1, "Bob", 23}, {:user, 2, "Helen", 20}]}
   ```
 
   В этот раз наш аккумулятор -- это кортеж из двух списков. В первом теле функции, как обычно, возвращаем результат. И тут мы разворачиваем оба списка. Во втором теле функции обрабатываем каждый элемент списка, извлекаем и проверяем возраст. Тех, кто моложе 16 лет, кладем в первый список в аккумуляторе, остальных во второй список.
@@ -130,9 +136,12 @@ instructions: |
     {:user, 3, "Bill", 15},
     {:user, 4, "Kate", 14}
   ]
+
   Solution.filter_by_age(users, 16) # [{:user, 1, "Bob", 23}, {:user, 2, "Helen", 20}]
   Solution.filter_by_age(users, 14) # [{:user, 1, "Bob", 23}, {:user, 2, "Helen", 20}, {:user, 3, "Bill", 15}]
   Solution.filter_by_age(users, 22) # [{:user, 1, "Bob", 23}]
   ```
 
-tips: []
+tips:
+  - |
+    [Статья в Hexlet про рекурсию](https://ru.hexlet.io/blog/posts/recursive)

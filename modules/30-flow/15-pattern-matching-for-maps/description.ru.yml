@@ -7,16 +7,18 @@ theory: |
 
   ```elixir
   my_map = %{a: 1, b: 2, c: 3}
-  %{a: value} = my_map  
+  %{a: value} = my_map
+
   IO.puts(value) # => 1
   ```
 
   Если ключи не являются атомами, то синтаксис отличается:
-  
+
   ```elixir
   my_map = %{"a" => 1, "b" => 2, "c" => 3}
   %{"a" => value1} = my_map
   IO.puts(value1) # => 1
+
   %{"b" => value2, "c" => value3} = my_map
   IO.puts(value2) # => 2
   IO.puts(value3) # => 3
@@ -32,10 +34,11 @@ theory: |
   ```
 
   Переменные можно использовать для извлечения значений, но не для извлечения ключей:
-  
+
   ```elixir
   %{"c" => my_var} = my_map
   IO.puts(my_var) # => 3
+  
   %{my_var => 1} = my_map # ** (CompileError) iex:17: cannot use variable my_var as map key inside a pattern.
   ```
 
@@ -48,9 +51,9 @@ theory: |
   ```
 
   _pin_ operator извлекает текущее значение переменной и подставляет его в шаблон. И дальше это значение в шаблоне работает как литерал.
-  
+
   _pin_ operator можно использовать и для ключа, и для значения:
-    
+
   ```elixir
   value1 = 1
   %{"a" => ^value1} = my_map
@@ -67,18 +70,21 @@ instructions: |
   Обе функции генерируют исключение `MatchError` если в словаре нет нужных ключей.
 
   ```elixir
-  defmodule Solution do
+  Solution.get_values(%{a: 1, b: 2})
+  # => {1, 2}
+  Solution.get_values(%{a: :ok, b: 42, c: true})
+  # => {:ok, 42}
 
-    def get_values(data) do
-      # TODO реализация
-    end
+  Solution.get_values(%{})
+  # => MatchError
 
-    def get_value_by_key(data, key) do
-      # TODO реализация
-    end
+  Solution.get_value_by_key(%{answer: 42}, :answer)
+  # => 42
+  Solution.get_value_by_key(%{question: "6 * 7"}, :question)
+  # => "6 * 7"
 
-  end
+  Solution.get_value_by_key(%{a: 1}, :b)
+  # => MatchError
   ```
-  
 
 tips: []

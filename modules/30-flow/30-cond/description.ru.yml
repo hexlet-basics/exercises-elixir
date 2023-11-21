@@ -9,11 +9,11 @@ theory: |
 
   ```elixir
   case Expr do
-      Pattern1 [when GuardSequence1] ->
-          Body1
-      ...
-      PatternN [when GuardSequenceN] ->
-          BodyN
+    Pattern1 [when GuardSequence1] ->
+        Body1
+    ...
+    PatternN [when GuardSequenceN] ->
+        BodyN
   end
   ```
 
@@ -21,11 +21,11 @@ theory: |
 
   ```elixir
   cond do
-      GuardSequence1 ->
-          Body1
-      ...
-      GuardSequenceN ->
-          BodyN
+    GuardSequence1 ->
+        Body1
+    ...
+    GuardSequenceN ->
+        BodyN
   end
   ```
 
@@ -50,11 +50,11 @@ theory: |
       num > 5 -> IO.puts("more than 5")
     end
   end
+
   my_fun(20) # => more than 10
   my_fun(8) # => more than 5
   my_fun(3) # ** (CondClauseError) no cond clause evaluated to a truthy value
   ```
-
 
   ## Конструкция if
 
@@ -87,23 +87,26 @@ theory: |
   Есть важное отличие от императивных языков -- в функциональных языках *if* всегда возвращает какое-то значение.
 
   ```elixir
-  > a = 5
-  > b = 10
-  > c = if a > b do
-  ...> a
-  ...> else
-  ...> b
-  ...> end
-  > IO.puts(c) # 10
+  a = 5
+  b = 10
+  c = if a > b do
+    a
+    else
+    b
+  end
+
+  IO.puts(c)
+  # => 10
   ```
 
   Некоторые функциональные языки требуют, чтобы часть *else* всегда присутствовала, потому что значение нужно вернуть в любом случае, выполняется условие *if* или не выполняется. Эликсир этого не требует:
 
   ```elixir
-  > c = if a > b do
-  ...> a
-  ...> end
-  > IO.puts(c) # nil
+  c = if a > b do
+    a
+  end
+
+  IO.puts(c) # => nil
   ```
 
 instructions: |
@@ -113,17 +116,21 @@ instructions: |
   Реализовать функцию `double_win?(a_win, b_win, c_win)`, которая принимает 3 булевых параметра для трех игроков. Если победили игроки A и B, то функция возвращает атом `:ab`. Если победили игроки A и C, то функция возвращает атом `:ac`, если победили игроки B и C, то функция возвращает атом `:bc`. Во всех остальных случаях функция возвращает `false`.
 
   ```elixir
-  defmodule Solution do
+  Solution.single_win?(true, false)
+  # => true
+  Solution.single_win?(false, true)
+  # => true
+  Solution.single_win?(true, true)
+  # => false
 
-    def single_win?(a_win, b_win) do
-      # TODO реализация
-    end
-
-    def double_win?(a_win, b_win, c_win) do
-      # TODO реализация
-    end
-
-  end
+  Solution.double_win?(true, true, false)
+  # => :ab
+  Solution.double_win?(true, false, true)
+  # => :ac
+  Solution.double_win?(true, true, true)
+  # => false
+  Solution.double_win?(true, false, false)
+  # => false
   ```
 
 tips: []

@@ -1,4 +1,5 @@
 ---
 name: Elixir data types
 description: |
+
   In the second module we will continue to get acquainted with different data types: atoms, tuples, lists and dictionaries. If you are not familiar with functional programming, even at this stage, some of it may already seem strange. But don't be frightened, it's not hard to use all of this.

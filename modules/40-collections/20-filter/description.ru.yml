@@ -7,11 +7,11 @@ theory: |
 
   ```elixir
   numbers = [12, 2, 30, 4, 55, 10, 11]
-  
+
   result = Enum.filter(numbers, fn (x) -> x >= 10 end)
   IO.puts(result) # => [12, 30, 55, 10, 11]
 
-  result = 
+  result =
     numbers
     |> Enum.filter(fn (x) -> x < 20 end)
     |> Enum.filter(fn (x) -> rem(x, 2) == 0 end)
@@ -32,11 +32,11 @@ instructions: |
 
   ```elixir
   Solution.inc_numbers(["foo", false, ["foo"]])
-  ; => []
+  # => []
   Solution.inc_numbers([10, "foo", false, true, ["foo"], 1.2, %{}, 32])
-  ; => [11, 2.2, 33]
+  # => [11, 2.2, 33]
   Solution.inc_numbers([1, 2, 3, 4, 5, 6.0])
-  ; => [2, 3, 4, 5, 6, 7.0]
+  # => [2, 3, 4, 5, 6, 7.0]
   ```
 
 tips:
