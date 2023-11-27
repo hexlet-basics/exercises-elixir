@@ -105,6 +105,7 @@ theory: |
   ```
 
 instructions: |
+
   Создайте функцию `hours_to_milliseconds` которая конвертирует часы в миллисекунды, обратите внимание на `:timer` библиотеку из Erlang:
 
   ```elixir
