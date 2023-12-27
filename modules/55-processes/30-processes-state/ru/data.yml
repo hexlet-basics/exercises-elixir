@@ -1,0 +1,7 @@
+name: Состояние процесса
+tips:
+  - >
+    [Конкурентность на примере процессов
+    Elixir](https://www.youtube.com/watch?v=A4x6IfceJCM)
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Process.html)

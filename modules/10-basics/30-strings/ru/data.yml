@@ -1,0 +1,4 @@
+name: Строки
+tips:
+  - |
+    [String.upcase/2](https://hexdocs.pm/elixir/String.html#upcase/2)

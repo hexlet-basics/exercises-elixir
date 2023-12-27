@@ -1,0 +1,4 @@
+name: Регистрация процессов
+tips:
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Registry.html)

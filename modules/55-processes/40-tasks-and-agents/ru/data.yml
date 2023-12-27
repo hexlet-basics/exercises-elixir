@@ -1,0 +1,6 @@
+name: Задачи и агенты
+tips:
+  - |
+    [Официальная документация Agent](https://hexdocs.pm/elixir/Agent.html)
+  - |
+    [Официальная документация Task](https://hexdocs.pm/elixir/Task.html)

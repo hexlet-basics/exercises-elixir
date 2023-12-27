@@ -1,0 +1,5 @@
+name: Оператор with
+tips:
+  - >
+    [Официальная
+    документация](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#with/1)

@@ -1,0 +1,8 @@
+name: Attributes
+tips:
+  - >
+    [Library documentation
+    example](https://github.com/michalmuskala/jason/blob/v1.4.0/lib/jason.ex)
+  - >
+    [Official
+    documentation](https://elixir-lang.org/getting-started/module-attributes.html)

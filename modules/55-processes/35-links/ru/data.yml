@@ -1,0 +1,11 @@
+name: Связь процессов
+tips:
+  - |
+    [Отказоустойчивость в Elixir](https://www.youtube.com/watch?v=mkGq1WoEvI4)
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Process.html#exit/2)
+  - >
+    [Документация по настройке
+    процессов](https://www.erlang.org/doc/man/erlang.html#process_flag-2)
+  - |
+    [Документация по супервизорам](https://hexdocs.pm/elixir/Supervisor.html)

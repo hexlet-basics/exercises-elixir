@@ -1,0 +1,10 @@
+name: Обработка ошибок, исключения
+tips:
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Exception.html)
+  - >
+    [Статья про
+    исключения](https://belaycpp.com/2021/06/16/exceptions-are-just-fancy-gotos/)
+  - >
+    [Исключения на примере
+    JS](https://ru.hexlet.io/courses/js_errors/lessons/exceptions/theory_unit)

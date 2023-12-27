@@ -1,0 +1,84 @@
+
+Макросы позволяют добавлять в язык новые команды, как в предыдущем упражнении:
+
+```elixir
+defmodule Solution do
+  defmacro my_unless(condition, do: expression) do
+    quote do
+      if(!unquote(condition), do: unquote(expression))
+    end
+  end
+end
+```
+
+На самом деле, в Elixir все конструкции имеют внутреннее представление, даже функции. Это означает, что с помощью макроса можно сгенерировать функцию:
+
+```elixir
+defmodule Exercise do
+  defmacro create_multiplier(fn_name, factor) do
+    quote do
+      def unquote(fn_name)(value) do
+        unquote(factor) * value
+      end
+    end
+  end
+end
+```
+
+Чтобы воспользоваться этим макросом, нужно создать другой модуль, так как определение функции доступно только внутри модуля:
+
+```elixir
+defmodule MyModule do
+  require Exercise
+
+  Exercise.create_multiplier(:double, 2)
+  Exercise.create_multiplier(:triple, 3)
+
+  def run_example() do
+    x = double(2)
+    IO.puts("Two times 2 is #{x}")
+  end
+end
+
+MyModule.double(5)
+# => 10
+MyModule.triple(3)
+# => 9
+MyModule.run_example()
+# => Two times 2 is 4
+```
+
+Создадим универсальный макрос, который за один вызов создает нужное количество функций:
+
+```elixir
+defmodule Exercise do
+  defmacro create_functions(fn_list) do
+    Enum.map(fn_list, fn {name, factor} ->
+      quote do
+        def unquote(:"#{name}_value")(value) do
+          unquote(factor) * value
+        end
+      end
+    end)
+  end
+end
+```
+
+И теперь опробуем макрос в новом модуле:
+
+```elixir
+defmodule Example do
+  require Exercise
+
+  Exercise.create_functions([{:double, 2}, {:triple, 3}, {:nullify, 0}])
+end
+
+Example.double_value(2)
+# => 4
+Example.triple_value(2)
+# => 6
+Example.nullify_value(2)
+# => 0
+```
+
+Если нужно создать макрос только внутри модуля, то `defmacrop` то что нужно. Как и приватные функции, макрос объявленный таким образом, будет доступен только в модуле, где макрос объявлен и только во время компиляции.
