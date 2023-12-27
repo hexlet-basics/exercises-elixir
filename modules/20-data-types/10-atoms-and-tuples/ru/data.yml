@@ -1,0 +1,7 @@
+name: Атомы и кортежи
+tips:
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Atom.html)
+  - >
+    [Почему максимальное число атомов
+    1,048,576](https://www.erlang.org/doc/man/erl.html#+t)

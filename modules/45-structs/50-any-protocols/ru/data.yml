@@ -1,0 +1,4 @@
+name: Общие протоколы
+tips:
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Protocol.html#derive/3)

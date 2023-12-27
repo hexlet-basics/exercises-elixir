@@ -1,0 +1,5 @@
+name: Неизменяемые структуры данных
+tips:
+  - >
+    [Объяснение иммутабельных структур данных на примере
+    Clojure](https://youtu.be/wASCH_gPnDw?si=l7jkfOLZxDNyu30G&t=1815)

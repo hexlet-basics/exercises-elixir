@@ -1,0 +1,8 @@
+name: Гигиена макросов
+tips:
+  - |
+    [Статья про гигиену макросов](https://en.wikipedia.org/wiki/Hygienic_macro)
+  - |
+    [Официальная документация](https://hexdocs.pm/elixir/Kernel.html#var!/2)
+  - |
+    [Официальная документация про Env](https://hexdocs.pm/elixir/Macro.Env.html)

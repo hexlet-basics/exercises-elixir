@@ -1,0 +1,16 @@
+name: Даты и время
+tips:
+  - |
+    [Официальная документация Date](https://hexdocs.pm/elixir/Date.html)
+  - |
+    [Официальная документация DateTime](https://hexdocs.pm/elixir/DateTime.html)
+  - >
+    [Официальная документация
+    NaiveDateTime](https://hexdocs.pm/elixir/NaiveDateTime.html)
+  - |
+    [Официальная документация Time](https://hexdocs.pm/elixir/Time.html)
+  - >
+    [Про базу знаний о часовых поясах
+    tzdata](https://habr.com/ru/articles/130401/)
+  - |
+    [Библиотека tzdata для Elixir](https://github.com/lau/tzdata)

@@ -1,0 +1,8 @@
+name: Атрибуты
+tips:
+  - >
+    [Пример с документацией
+    библиотеки](https://github.com/michalmuskala/jason/blob/v1.4.0/lib/jason.ex)
+  - >
+    [Официальная
+    документация](https://elixir-lang.org/getting-started/module-attributes.html)

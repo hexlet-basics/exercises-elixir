@@ -1,0 +1,7 @@
+name: Поведение
+tips:
+  - >
+    [Официальная
+    документация](https://hexdocs.pm/elixir/Module.html#module-behaviour)
+  - |
+    [Документация Plug](https://hexdocs.pm/plug/readme.html)

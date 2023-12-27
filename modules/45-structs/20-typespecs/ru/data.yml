@@ -1,0 +1,6 @@
+name: Описание типов
+tips:
+  - |
+    [Список типов](https://hexdocs.pm/elixir/typespecs.html#basic-types)
+  - |
+    [Dyalyzer для Elixir](https://github.com/jeremyjh/dialyxir)
