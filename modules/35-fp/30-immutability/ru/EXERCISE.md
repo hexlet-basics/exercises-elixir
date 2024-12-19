@@ -4,17 +4,17 @@
 Нужно реализовать функцию `encode/2`, которая принимает строку и сдвиг, и возвращает зашифрованную строку.
 
 ```elixir
-Solution.encode('Hello', 10)
-# => 'Rovvy'
-Solution.encode('Hello', 5)
-# => 'Mjqqt'
+Solution.encode("Hello", 10)
+# => "Rovvy"
+Solution.encode("Hello", 5)
+# => "Mjqqt"
 ```
 
 Также нужно реализовать функцию `decode/2`, которая принимает зашифрованную строку и сдвиг, и возвращает оригинальную строку.
 
 ```elixir
-Solution.decode('Rovvy', 10)
-# => 'Hello'
-Solution.decode('Mjqqt', 5)
-# => 'Hello'
+Solution.decode("Rovvy", 10)
+# => "Hello"
+Solution.decode("Mjqqt", 5)
+# => "Hello"
 ```
