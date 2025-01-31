@@ -2,9 +2,7 @@
 title: |
   Elixir Basics
 
-header: |
-  Elixir Basics
-
+header: Elixir
 description: |
   The Elixir language is quite complex. Most of its elements are more complex than they first appear. In the first module, we will look at modules and functions, basic data types and operations with them.
 
