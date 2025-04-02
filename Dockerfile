@@ -2,15 +2,18 @@ FROM hexletbasics/base-image:latest
 
 WORKDIR /exercises-elixir
 
-RUN apt-get update && \
-    apt-get install -yq erlang elixir
+ENV PATH=/exercises-elixir/bin:$PATH
 
-ADD mix.* ./
-RUN mix local.hex --force \
-  && mix local.rebar --force \
-  && mix hex.info
-RUN mix deps.get
+# Установка зависимостей и очистка кэша
+RUN apt-get update && \
+    apt-get install -yqq erlang elixir && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY mix.* ./
+
+RUN mix local.hex --force && \
+    mix local.rebar --force && \
+    mix hex.info && \
+    mix deps.get
 
 COPY . .
-
-ENV PATH /exercises-elixir/bin:$PATH
