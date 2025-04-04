@@ -18,7 +18,7 @@ defmodule Test do
     end
 
     test "for robot" do
-      assert Teller.impl_for(%Robot{}) == Teller.Any
+      assert Teller.impl_for(%Robot{}) == Teller.Robot
       assert Teller.say_something(%Robot{name: "Roberto"}) == "World!"
     end
   end
