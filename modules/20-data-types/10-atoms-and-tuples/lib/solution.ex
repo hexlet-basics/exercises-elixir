@@ -6,12 +6,12 @@ defmodule Solution do
   end
 
   # BEGIN
-  def is_point_inside_circle(point, circle) do
+  def point_inside_circle?(point, circle) do
     {:circle, center, radius} = circle
     distance(point, center) <= radius
   end
 
-  def is_point_inside_rect(point, rect) do
+  def point_inside_rect?(point, rect) do
     {:point, x, y} = point
     {:rect, left_top, right_bottom} = rect
     {:point, left_x, top_y} = left_top
