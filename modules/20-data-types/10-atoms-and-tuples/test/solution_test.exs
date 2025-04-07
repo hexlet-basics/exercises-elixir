@@ -19,13 +19,13 @@ defmodule Test do
 
   test "point inside circle" do
     point = {:point, 50, 50}
-    assert is_point_inside_circle(point, {:circle, {:point, 10, 10}, 100})
-    assert not is_point_inside_circle(point, {:circle, {:point, -10, -10}, 20})
+    assert point_inside_circle?(point, {:circle, {:point, 10, 10}, 100})
+    assert not point_inside_circle?(point, {:circle, {:point, -10, -10}, 20})
   end
 
   test "point inside rect" do
     point = {:point, -10, 20}
-    assert is_point_inside_rect(point, {:rect, {:point, -20, 30}, {:point, 20, 10}})
-    assert not is_point_inside_rect(point, {:rect, {:point, 0, 0}, {:point, 10, 10}})
+    assert point_inside_rect?(point, {:rect, {:point, -20, 30}, {:point, 20, 10}})
+    assert not point_inside_rect?(point, {:rect, {:point, 0, 0}, {:point, 10, 10}})
   end
 end
