@@ -38,7 +38,7 @@ Example.multiply_by_two("string")
 # => {:error, :not_number}
 
 Example.magic(2)
-# => {:ok, 4}
+# => {:ok, 14}
 Example.magic("string")
 # => {:error, :no_magic_here}
 ```
