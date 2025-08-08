@@ -35,7 +35,7 @@ png =
 :my_atom
 ```
 
-```erlang
+```text
 # в эрланге
 my_atom.
 ```
@@ -50,7 +50,7 @@ is_binary("Example") # => true
 <<"Example">> === "Example" # => true
 ```
 
-```erlang
+```text
 # в эрланге
 is_list('Example'). # => false
 is_list("Example"). # => true
@@ -93,7 +93,7 @@ x = 20
 x1 = x + 10 # => 30
 ```
 
-```erlang
+```text
 # в эрланге
 X = 10.
 X = 20.
