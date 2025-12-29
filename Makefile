@@ -23,7 +23,7 @@ compose-down:
 compose-test:
 	docker-compose run --rm exercises make test
 
-compose-lint:
+compose-code-lint:
 	docker-compose run --rm exercises make code-lint
 
 code-lint-fix:
