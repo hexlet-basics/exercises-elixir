@@ -12,7 +12,7 @@ defmodule Solution do
   def move_allowed?(current_color, figure) do
     case figure do
       {:pawn, ^current_color} -> true
-      {:rock, ^current_color} -> true
+      {:rook, ^current_color} -> true
       _ -> false
     end
   end

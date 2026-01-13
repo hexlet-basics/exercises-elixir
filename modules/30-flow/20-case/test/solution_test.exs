@@ -14,8 +14,8 @@ defmodule Test do
   test "move_allowed? test" do
     assert move_allowed?(:white, {:pawn, :white})
     assert not move_allowed?(:black, {:pawn, :white})
-    assert move_allowed?(:white, {:rock, :white})
-    assert not move_allowed?(:black, {:rock, :white})
+    assert move_allowed?(:white, {:rook, :white})
+    assert not move_allowed?(:black, {:rook, :white})
     assert not move_allowed?(:white, {:queen, :white})
     assert not move_allowed?(:black, {:queen, :white})
   end
