@@ -9,7 +9,7 @@ defmodule Test do
 
   test "get_values invalid input test" do
     assert_raise MatchError, fn ->
-      get_values(%{})
+      get_values(Map.new([]))
     end
   end
 
