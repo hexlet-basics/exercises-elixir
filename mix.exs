@@ -5,7 +5,7 @@ defmodule ExercisesElixir.MixProject do
     [
       app: :exercises_elixir,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -21,7 +21,7 @@ defmodule ExercisesElixir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 1.7.11", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false}
     ]
   end
 end
